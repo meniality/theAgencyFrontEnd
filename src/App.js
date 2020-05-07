@@ -1,16 +1,34 @@
 import React from 'react';
 import './App.css';
-import { Provider } from 'react-redux'
-import store from './store'
+import {connect} from 'react-redux'
+import actions from './actions'
 
-function App() {
+const {bitsOfInfoActions: {incrementBitsOfInfoAction}} = actions
+
+function App(props) {
+
+
+const {bitsOfInfo} = props
+
   return (
-    <Provider store={store}>
       <div className="App">
-        <h1>test</h1>
-      </div>
-    </Provider>
+        <h1>Bits Of Info</h1>
+        <h2> {bitsOfInfo} </h2>
+        <button 
+          onClick = {() => {props.incrementBitsOfInfo(1)}}>
+        +
+        </button>
+      </div>   
   );
 }
 
-export default App;
+
+const mapDispatchToProps = (dispatch) => ({
+  incrementBitsOfInfo: (incrementValue) => dispatch(incrementBitsOfInfoAction(incrementValue)),
+})
+
+const mapStateToProps = (state) => ({
+  bitsOfInfo: state.bitsOfInfo
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
