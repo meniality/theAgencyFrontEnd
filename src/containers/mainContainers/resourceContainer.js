@@ -1,9 +1,15 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import SingleResource from '../../components/singleResource'
+// import actions from '../../actions'
 
-export default function resourceContainer() {
+function resourceContainer(props) {
+
+  const {resources: {bitsOfInfo}} = props
+
   return (
     <div style = {styles.div}>
-      <h1>Resource Container</h1>
+      <SingleResource resource={bitsOfInfo}/>
     </div>
   )
 }
@@ -20,3 +26,9 @@ const styles = {
     borderColor: 'rgb(86, 85, 85)',
   }
 }
+
+const mapStateToProps = (state) => ({
+  resources: state.resources
+})
+
+export default connect(mapStateToProps, null)(resourceContainer)

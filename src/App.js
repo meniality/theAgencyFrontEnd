@@ -1,37 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {connect} from 'react-redux'
 import actions from './actions'
 import Header from './containers/header'
 import Main from './containers/main'
 
-const {bitsOfInfoActions: {incrementBitsOfInfoAction}} = actions
+const {resourcesActions: {setInitialResourcesAction}} = actions
 
 function App(props) {
 
+window.localStorage.getItem('resources')
+      ? props.setInitialResources(window.localStorage.getItem('resources'))
+      : props.setInitialResources({bitsOfInfo: {currentCount: 0, title: "Bits Of Info:",visible: true, }})
+  
 
-const {bitsOfInfo} = props
 
   return (
       <div className="App">
         <Header/>
         <Main />
-        <h1>Bits Of Info</h1>
-        <h2> {bitsOfInfo} </h2>
-        <button 
-          onClick = {() => {props.incrementBitsOfInfo(1)}}>
-        +
-        </button>
       </div>   
   );
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  incrementBitsOfInfo: (incrementValue) => dispatch(incrementBitsOfInfoAction(incrementValue)),
+  setInitialResources: (resources) => dispatch(setInitialResourcesAction(resources))
 })
 
-const mapStateToProps = (state) => ({
-  bitsOfInfo: state.bitsOfInfo
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(null, mapDispatchToProps)(App)
