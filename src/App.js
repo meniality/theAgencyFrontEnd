@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {connect} from 'react-redux'
 import actions from './actions'
+import Header from './containers/header'
 
 const {bitsOfInfoActions: {incrementBitsOfInfoAction}} = actions
 
@@ -12,6 +13,7 @@ const {bitsOfInfo} = props
 
   return (
       <div className="App">
+        <Header/>
         <h1>Bits Of Info</h1>
         <h2> {bitsOfInfo} </h2>
         <button 
@@ -21,7 +23,6 @@ const {bitsOfInfo} = props
       </div>   
   );
 }
-
 
 const mapDispatchToProps = (dispatch) => ({
   incrementBitsOfInfo: (incrementValue) => dispatch(incrementBitsOfInfoAction(incrementValue)),
