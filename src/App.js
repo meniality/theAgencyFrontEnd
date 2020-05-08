@@ -3,6 +3,7 @@ import './App.css';
 import {connect} from 'react-redux'
 import actions from './actions'
 import Header from './containers/header'
+import Main from './containers/main'
 
 const {bitsOfInfoActions: {incrementBitsOfInfoAction}} = actions
 
@@ -14,6 +15,7 @@ const {bitsOfInfo} = props
   return (
       <div className="App">
         <Header/>
+        <Main />
         <h1>Bits Of Info</h1>
         <h2> {bitsOfInfo} </h2>
         <button 
