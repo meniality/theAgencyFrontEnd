@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux'
-import {bitsOfInfo} from './bitsOfInfo'
 import {resources} from './resources'
+import {currentActionPage}from './currentActionPage'
 
 
 export default combineReducers({
-  bitsOfInfo,
   resources,
+  currentActionPage
 })

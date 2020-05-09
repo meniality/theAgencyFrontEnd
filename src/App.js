@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {connect} from 'react-redux'
 import actions from './actions'
@@ -9,11 +9,22 @@ const {resourcesActions: {setInitialResourcesAction}} = actions
 
 function App(props) {
 
-window.localStorage.getItem('resources')
-      ? props.setInitialResources(window.localStorage.getItem('resources'))
-      : props.setInitialResources({bitsOfInfo: {currentCount: 0, title: "Bits Of Info:",visible: true, }})
+  window.localStorage.getItem('resources')
+    ? props.setInitialResources(window.localStorage.getItem('resources'))
+    : props.setInitialResources(
+        {bitsOfInfo: 
+          {currentCount: 0, 
+            title: "Bits Of Info:",
+            visible: true, 
+            incrementValue: 1
+          },
+        money: {
+          currentCount: 0,
+          title: "$",
+          incomePerSecond: 0
+        } 
+        })
   
-
 
   return (
       <div className="App">

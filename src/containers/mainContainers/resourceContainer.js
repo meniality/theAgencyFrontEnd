@@ -1,26 +1,35 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import SingleResource from '../../components/singleResource'
-// import actions from '../../actions'
+import actions from '../../actions'
 
-function resourceContainer(props) {
+const {currentActionPageActions: {setCurrentActionPageAction}} = actions
 
-  const {resources: {bitsOfInfo}} = props
+function ResourceContainer(props) {
+
+  const {resources: {bitsOfInfo,money}} = props
 
   return (
     <div style = {styles.div}>
-      <SingleResource resource={bitsOfInfo}/>
+      <SingleResource
+      customClickEvent={()=> {props.setCurrentActionPage('money')}}
+      resource={money}
+      >
+      </SingleResource>
+      <SingleResource 
+        customClickEvent={()=> {props.setCurrentActionPage('bitsOfInfo')}} 
+        resource={bitsOfInfo}>
+      </SingleResource>
     </div>
   )
 }
 
 const styles = {
   div: {
-    width: "70vw",
+    width: "20vw",
     height: 500,
     marginLeft: 5,
     borderStyle: 'solid',
-    borderRightStyle: 'none',
     borderTopStyle: 'none',
     borderWidth: 2,
     borderColor: 'rgb(86, 85, 85)',
@@ -28,7 +37,11 @@ const styles = {
 }
 
 const mapStateToProps = (state) => ({
-  resources: state.resources
+  resources: state.resources,
+  currentActionPage: state.currentActionPage
+})
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentActionPage: (actionPage) => dispatch(setCurrentActionPageAction(actionPage))
 })
 
-export default connect(mapStateToProps, null)(resourceContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ResourceContainer)
