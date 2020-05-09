@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import ResourceContainer from './mainContainers/researchTab/resourceContainer'
 import StoryContainer from './mainContainers/storyContainer'
 import ActionsContainer from './mainContainers/researchTab/actionsContainer'
+import LocationContainer from './mainContainers/finance/locationsContainer'
+import LocationActionsContainer from './mainContainers/finance/locationActionsContainer'
 
 export default function Main(){
 
@@ -20,7 +22,8 @@ export default function Main(){
       case 'finance':
           return (
             <>
-              
+              <LocationContainer />
+              <LocationActionsContainer />
               <StoryContainer />
             </>
           )

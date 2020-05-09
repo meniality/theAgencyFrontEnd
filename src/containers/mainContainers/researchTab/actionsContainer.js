@@ -37,8 +37,5 @@ const styles = {
 const mapStateToProps = (state) => ({
   currentActionPage: state.currentActionPage
 })
-const mapDispatchToProps = (dispatch) => ({
 
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(actionsContainer)
+export default connect(mapStateToProps, null)(actionsContainer)
