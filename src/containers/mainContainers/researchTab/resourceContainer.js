@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import SingleResource from '../../components/singleResource'
-import actions from '../../actions'
+import SingleResource from '../../../components/singleResource'
+import actions from '../../../actions'
 
 const {currentActionPageActions: {setCurrentActionPageAction}} = actions
 

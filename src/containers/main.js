@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import ResourceContainer from './mainContainers/resourceContainer'
+import ResourceContainer from './mainContainers/researchTab/resourceContainer'
 import StoryContainer from './mainContainers/storyContainer'
-import ActionsContainer from './mainContainers/actionsContainer'
+import ActionsContainer from './mainContainers/researchTab/actionsContainer'
 
 export default function Main(){
 
@@ -17,6 +17,13 @@ export default function Main(){
             <StoryContainer/>
           </>
         )
+      case 'finance':
+          return (
+            <>
+              
+              <StoryContainer />
+            </>
+          )
       default:
         return null
     }
