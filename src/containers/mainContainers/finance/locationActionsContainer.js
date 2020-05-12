@@ -9,7 +9,10 @@ function LocationActionsContainer(props) {
   const selectLocationActionPage = () => {
     switch(currentLocationActionPage) {
       case 'newsOutlets':
-        return <NewsOutletsActionPage />
+        return <NewsOutletsActionPage 
+                  money={props.resources.money.currentCount}
+                  bitsOfInfo={props.resources.bitsOfInfo.currentCount}
+              />
       default:
         return null
     }
@@ -24,7 +27,8 @@ function LocationActionsContainer(props) {
 }
 
 const mapStateToProps = (state) => ({
-  currentLocationActionPage: state.currentLocationActionPage
+  currentLocationActionPage: state.currentLocationActionPage,
+  resources: state.resources
 })
 
 export default connect(mapStateToProps, null)(LocationActionsContainer)

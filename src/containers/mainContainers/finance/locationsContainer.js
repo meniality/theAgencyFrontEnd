@@ -19,8 +19,9 @@ function LocationContainer(props) {
 }
 
 const mapStateToProps = (state) => ({
-  locations: state.locations
+  locations: state.locations,
 })
+
 const mapDispatchToProps = (dispatch) => ({
   setCurrentLocationActionPage: (LocationActionPage) => dispatch(setCurrentLocationActionPageAction(LocationActionPage))
 })

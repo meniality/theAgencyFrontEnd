@@ -10,8 +10,13 @@ export const resources = (state={}, action) => {
     case "DECREMENT_BITSOFINFO":
       const decrementNewState = Object.assign({}, state)
       decrementNewState.bitsOfInfo.currentCount = 
-        decrementNewState.bitsOfInfo.currentCount - decrementNewState.bitsOfInfo.decrementValue
+        decrementNewState.bitsOfInfo.currentCount - action.decrementValue
       return decrementNewState
+      case "INCREMENT_MONEY":
+        const incrementMoneyNewState = Object.assign({}, state)
+        incrementMoneyNewState.money.currentCount =
+          incrementMoneyNewState.money.currentCount + action.incrementValue
+      return incrementMoneyNewState
     default:
       return state
   }

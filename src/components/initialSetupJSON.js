@@ -8,7 +8,7 @@ export const initialSetup= {
       },
     money: {
       currentCount: 0,
-      title: "$",
+      title: "Bank Account: $",
       incomePerSecond: 0
     } 
   },
