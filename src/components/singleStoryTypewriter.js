@@ -1,11 +1,21 @@
 import React from 'react'
+import Typewriter from 'typewriter-effect'
 
-export default function SingleStory(props){
+export default function SingleStoryTypewriter(props){
 
   return(
     <div style={styles.outerDiv}>
       <div style={styles.innerDiv}>
-        <p>{props.storyElement}</p>
+        <Typewriter
+          options={{
+            delay: 10
+          }}
+          onInit={(typewriter) => {
+          typewriter.typeString(props.storyElement)
+          .pauseFor(500)
+          .start()
+          }}
+        />
       </div>
     </div>
   )
