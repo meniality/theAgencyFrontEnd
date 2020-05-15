@@ -10,7 +10,6 @@ function StoryContainer(props) {
 
   const checkIfNewOrOldStoryElement = () => {
     return currentStoryPoints.map(storyPoint => {
-      console.log(currentStoryPoints[currentStoryPoints.length-1])
       return Object.entries(story).map((allStoryPoint) => {
         if (storyPoint === allStoryPoint[0]) {
           if(storyPoint === currentStoryPoints[currentStoryPoints.length-1]){   

@@ -3,17 +3,27 @@ import {connect} from 'react-redux'
 import actions from '../../../../actions'
 
 const {resourcesActions:{decrementBitsOfInfoAction,incrementMoneyAction}}=actions
+const {currentStoryPointsActions:{addNewStoryPointAction}}=actions
 
 function NewsOutletsActionPage (props) {
 
+  const {currentStoryPoints} = props
+
+  const checkForStoryPoint = () => {
+    if (!currentStoryPoints.includes('newsOutlets'))
+      props.addNewStoryPoint('newsOutlets')
+  }
+  
   const sellInfoForMoney = () => {
    if (props.bitsOfInfo >= 40){
     props.decrementBitsOfInfo(40)
     props.incrementMoney(10)
+    props.addNewStoryPoint('sold')
    }
   }
 
   return(
+    checkForStoryPoint(),
     <div style = {styles.div}>
       <p style={styles.title}>News Outlets</p>
       <div style ={styles.actionContainer}>
@@ -66,7 +76,12 @@ const styles = {
 
 const mapDispatchToProps = (dispatch) => ({
   decrementBitsOfInfo: (decrementValue) => dispatch(decrementBitsOfInfoAction(decrementValue)),
-  incrementMoney: (incrementValue) => dispatch(incrementMoneyAction(incrementValue))
+  incrementMoney: (incrementValue) => dispatch(incrementMoneyAction(incrementValue)),
+  addNewStoryPoint: (storyPoint) => dispatch(addNewStoryPointAction(storyPoint))
 })
 
-export default connect(null, mapDispatchToProps)(NewsOutletsActionPage)
+const mapStateToProps = (state) => ({
+  currentStoryPoints: state.currentStoryPoints
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsOutletsActionPage)
