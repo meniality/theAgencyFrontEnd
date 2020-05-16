@@ -20,7 +20,6 @@ function App(props) {
   }
 
   const SetDefaultOpen = () => {
-    
     props.setInitialResources(initialSetup.resources)
     props.setInitialLocation(initialSetup.locations)
     props.setDefaultCurrentStoryPoint([Object.keys(story)[0]])

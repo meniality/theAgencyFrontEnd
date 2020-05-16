@@ -3,14 +3,17 @@ export const initialSetup= {
     bitsOfInfo: {
         currentCount: 0, 
         title: "Bits Of Info:",
-        visible: true, 
-        incrementValue: 1
-      },
+        bitsPerSecond: 0
+    },
     money: {
-      currentCount: 0,
+      currentCount: 400,
       title: "Bank Account: $",
       incomePerSecond: 0
-    } 
+    },
+    algorithms: {
+      currentCount: 0,
+      currentEffeiency: 1,
+    }
   },
   locations: {
     newsOutlets: {

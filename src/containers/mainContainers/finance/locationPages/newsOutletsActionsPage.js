@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import actions from '../../../../actions'
 
@@ -21,8 +21,6 @@ function NewsOutletsActionPage (props) {
    }
   }
 
-  useEffect(()=>{checkForStoryPoint()})
-
   return(
     <div style = {styles.div}>
       <p style={styles.title}>News Outlets</p>
@@ -31,7 +29,12 @@ function NewsOutletsActionPage (props) {
           Turn in 40 bits of information to the tabloids for $10
         </p>
         <p>Current Bits of information:{props.bitsOfInfo} Current Money:${props.money}</p>
-        <button className = {'button'}style = {styles.actionButton} onClick = {sellInfoForMoney}>
+        <button className = {'button'}style = {styles.actionButton} 
+          onClick = {() => {
+            sellInfoForMoney()
+            checkForStoryPoint()
+          }
+        }>
           Turn In
         </button>
       </div>

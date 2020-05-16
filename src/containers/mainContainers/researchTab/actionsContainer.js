@@ -35,7 +35,8 @@ const styles = {
 }
 
 const mapStateToProps = (state) => ({
-  currentActionPage: state.currentActionPage
+  currentActionPage: state.currentActionPage,
+  resources: state.resources
 })
 
 export default connect(mapStateToProps, null)(actionsContainer)
