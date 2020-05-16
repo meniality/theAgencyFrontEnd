@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'Cormorant', serif;
+  src: url('https://fonts.googleapis.com/css2?family=Cormorant:wght@500&display=swap')
+}
+
+.singleResourceDiv:hover{
+  background-color: rgba(177, 177, 177, 0.42);
+}
+
+.navBarTab:focus{
+  outline: none
+}
+
+.button:focus{
+  outline: none
+}
