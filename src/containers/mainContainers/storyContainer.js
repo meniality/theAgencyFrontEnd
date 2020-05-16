@@ -10,13 +10,13 @@ import SingleStory from '../../components/singleStory'
 function StoryContainer(props) {
 
   const {currentStoryPoints} = props
+  const temp = 'ad'
   
   const el = useRef(null);
 
 useEffect(() => {
     el.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
-    console.log('useEffect')
-});
+}, [currentStoryPoints]);
    
   const checkIfNewOrOldStoryElement = () => {
     return currentStoryPoints.map(storyPoint => {

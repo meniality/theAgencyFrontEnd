@@ -18,7 +18,6 @@ function NewsOutletsActionPage (props) {
    if (props.bitsOfInfo >= 40){
     props.decrementBitsOfInfo(40)
     props.incrementMoney(10)
-    props.addNewStoryPoint('sold')
    }
   }
 
