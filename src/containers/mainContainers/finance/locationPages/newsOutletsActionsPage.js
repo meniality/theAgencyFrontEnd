@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import actions from '../../../../actions'
 
@@ -22,8 +22,9 @@ function NewsOutletsActionPage (props) {
    }
   }
 
+  useEffect(()=>{checkForStoryPoint()})
+
   return(
-    checkForStoryPoint(),
     <div style = {styles.div}>
       <p style={styles.title}>News Outlets</p>
       <div style ={styles.actionContainer}>
