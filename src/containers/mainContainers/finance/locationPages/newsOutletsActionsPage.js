@@ -28,7 +28,7 @@ function NewsOutletsActionPage (props) {
         <p style= {styles.description}>
           Turn in 40 bits of information to the tabloids for $10
         </p>
-        <p>Current Bits of information:{props.bitsOfInfo} Current Money:${props.money}</p>
+        <p>Current Bits of information:{props.bitsOfInfo} Current Money:${Math.round(props.money)}</p>
         <button className = {'button'}style = {styles.actionButton} 
           onClick = {() => {
             sellInfoForMoney()

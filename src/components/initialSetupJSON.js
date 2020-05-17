@@ -3,22 +3,27 @@ export const initialSetup= {
     bitsOfInfo: {
         currentCount: 0, 
         title: "Bits Of Info:",
-        bitsPerSecond: 0
+        perSecond: 0
     },
     money: {
       currentCount: 400,
       title: "Bank Account: $",
-      incomePerSecond: 0
+      perSecond: 0
     },
     algorithms: {
       currentCount: 0,
       currentEffeiency: 1,
+      cost: 40
     }
   },
   locations: {
     newsOutlets: {
       title: "News Outlets"
     }
+  },
+  tabs: {
+    research: true,
+    finance: false,
   }
 }
 

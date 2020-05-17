@@ -10,8 +10,6 @@ import SingleStory from '../../components/singleStory'
 function StoryContainer(props) {
 
   const {currentStoryPoints} = props
-  const temp = 'ad'
-  
   const el = useRef(null);
 
 useEffect(() => {

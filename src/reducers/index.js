@@ -4,6 +4,8 @@ import {currentActionPage} from './currentActionPage'
 import {locations} from './locations'
 import {currentLocationActionPage} from './currentLocationActionPage'
 import {currentStoryPoints} from './currentStoryPoints'
+import {tabs} from './tabs'
+import {incrementStarted} from './incrementStarted'
 
 
 export default combineReducers({
@@ -11,5 +13,7 @@ export default combineReducers({
   currentActionPage,
   locations,
   currentLocationActionPage,
-  currentStoryPoints
+  currentStoryPoints,
+  tabs,
+  incrementStarted
 })
