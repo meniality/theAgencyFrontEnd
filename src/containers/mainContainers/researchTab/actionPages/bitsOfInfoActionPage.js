@@ -23,7 +23,7 @@ function BitsOfInfoActionPage (props) {
   }
 
   const buyAlgorithm = () => {
-    if (resources.money.currentCount >= 40){
+    if (resources.money.currentCount >= algorithms.cost){
       props.incrementAlgorithms()
       props.decrementMoney(algorithms.cost)
       props.increaseAlgorithmCost()

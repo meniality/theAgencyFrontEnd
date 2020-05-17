@@ -15,7 +15,7 @@ function ResourceContainer(props) {
     if (props.incrementStarted === false){
       props.setIncrementStartedTrue()
       setInterval(()=>{
-        props.incrementBitsOfInfo(bitsOfInfo.bitsPerSecond)
+        props.incrementBitsOfInfo(bitsOfInfo.perSecond)
       },1000)
     }
   }
@@ -41,6 +41,9 @@ function ResourceContainer(props) {
 
 const styles = {
   div: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     width: "20vw",
     height: 500,
     marginLeft: 5,
@@ -48,6 +51,7 @@ const styles = {
     borderTopStyle: 'none',
     borderWidth: 2,
     borderColor: 'rgb(86, 85, 85)',
+
   }
 }
 

@@ -26,7 +26,7 @@ export const resources = (state={}, action) => {
       const incrementAlgorithmsNewState = Object.assign({}, state)
         incrementAlgorithmsNewState.algorithms.currentCount =
           incrementAlgorithmsNewState.algorithms.currentCount + 1
-        incrementAlgorithmsNewState.bitsOfInfo.bitsPerSecond =
+        incrementAlgorithmsNewState.bitsOfInfo.perSecond =
            incrementAlgorithmsNewState.algorithms.currentCount * incrementAlgorithmsNewState.algorithms.currentEffeiency
       return incrementAlgorithmsNewState
     case "INCREASE_ALOGRITHM_COST":

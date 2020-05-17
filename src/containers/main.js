@@ -9,7 +9,7 @@ import LocationActionsContainer from './mainContainers/finance/locationActionsCo
 function Main(props){
 
   const[selectedTab, setSelectedTab] = useState('research')
-  // const {tabs} = props
+  const {tabs} = props
 
   const selectTab = () => {
     switch(selectedTab) {
@@ -49,7 +49,7 @@ function Main(props){
   }
 
   const createFinanceTab = () => {
-    // if(tabs.finance === true){
+    if(tabs.finance === true){
       return (
         <button 
           className = "navBarTab"
@@ -62,11 +62,10 @@ function Main(props){
           Finance
         </button>
       )
-    // }
+    }
   }
 
   return(
-    console.log(selectedTab),
     <div>
       <div style = {styles.navbar}>
        {createResearchTab()}
@@ -80,7 +79,7 @@ function Main(props){
 }
 
 const mapStateToProps = (state) => ({
-  // tabs: state.tabs,
+  tabs: state.tabs,
 })
 
 export default connect(mapStateToProps,null)(Main)
