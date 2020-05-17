@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
+import {connect} from 'react-redux'
 import ResourceContainer from './mainContainers/researchTab/resourceContainer'
 import StoryContainer from './mainContainers/storyContainer'
 import ActionsContainer from './mainContainers/researchTab/actionsContainer'
 import LocationContainer from './mainContainers/finance/locationsContainer'
 import LocationActionsContainer from './mainContainers/finance/locationActionsContainer'
 
-export default function Main(){
+function Main(props){
 
   const[selectedTab, setSelectedTab] = useState('research')
+  // const {tabs} = props
 
   const selectTab = () => {
     switch(selectedTab) {
@@ -20,37 +22,55 @@ export default function Main(){
           </>
         )
       case 'finance':
-          return (
-            <>
-              <LocationContainer />
-              <LocationActionsContainer />
-              <StoryContainer />
-            </>
-          )
+        return (
+          <>
+            <LocationContainer />
+            <LocationActionsContainer />
+            <StoryContainer />
+          </>
+        )
       default:
         return null
     }
   }
 
-  return(
-    <div>
-      <div style = {styles.navbar}>
-        <button 
-          className = "navBarTab"
-          style = {
-            selectedTab === 'research'
-            ? styles.greyTab
-            : styles.tab
-          }
-          onClick = {() => setSelectedTab('research')}>Research
-        </button>
+  const createResearchTab = () => {
+    return (
+      <button 
+        className = "navBarTab"
+        style = {
+          selectedTab === 'research'
+          ? styles.greyTab
+          : styles.tab
+        }
+        onClick = {() => setSelectedTab('research')}>Research
+      </button>
+    )
+  }
+
+  const createFinanceTab = () => {
+    // if(tabs.finance === true){
+      return (
         <button 
           className = "navBarTab"
           style = {
             selectedTab === 'finance'
             ? styles.greyTab
             : styles.tab
-          } onClick = {() => setSelectedTab('finance')}>Finance</button>
+          } 
+          onClick = {() => setSelectedTab('finance')}>
+          Finance
+        </button>
+      )
+    // }
+  }
+
+  return(
+    console.log(selectedTab),
+    <div>
+      <div style = {styles.navbar}>
+       {createResearchTab()}
+       {createFinanceTab()}
       </div>
       <div style= {styles.div}>
         {selectTab()}
@@ -58,6 +78,12 @@ export default function Main(){
     </div>
   )
 }
+
+const mapStateToProps = (state) => ({
+  // tabs: state.tabs,
+})
+
+export default connect(mapStateToProps,null)(Main)
 
 const styles = {
   div: {

@@ -2,22 +2,31 @@ import React from 'react'
 import {connect} from 'react-redux'
 import actions from '../../../../actions'
 
-const {resourcesActions: {incrementBitsOfInfoAction, incrementAlgorithmsAction, decrementMoneyAction}} = actions
+const {resourcesActions: {incrementBitsOfInfoAction, incrementAlgorithmsAction, decrementMoneyAction, increaseAlgorithmCostAction}} = actions
 const {currentStoryPointsActions:{addNewStoryPointAction}}=actions
+const {tabsActions:{setFinanceTabTrueAction}} = actions
+
 
 function BitsOfInfoActionPage (props) {
 
-  const {currentStoryPoints, resources} = props
+  const {currentStoryPoints, resources, algorithms, tabs} = props
 
   const checkForStoryPoint = () => {
     if (!currentStoryPoints.includes('firstBit'))
       props.addNewStoryPoint('firstBit')
   }
 
+  const checkForFinanceTabVisibility = () => {
+    if (resources.bitsOfInfo.currentCount >= 40 && tabs.finance === false){
+      props.setFinanceTabTrue()
+    }
+  }
+
   const buyAlgorithm = () => {
     if (resources.money.currentCount >= 40){
       props.incrementAlgorithms()
-      props.decrementMoney(40)
+      props.decrementMoney(algorithms.cost)
+      props.increaseAlgorithmCost()
     }
   }
 
@@ -28,8 +37,9 @@ function BitsOfInfoActionPage (props) {
         <p style={styles.description}>Search the Internet for proof of the unknown</p>
         <button className = {'button'}style = {styles.actionButton} 
           onClick ={()=>{
-            props.incrementBitsOfInfo()
+            props.incrementBitsOfInfo(1)
             checkForStoryPoint()
+            checkForFinanceTabVisibility()
           }
         }>
           +1 bit of info
@@ -37,8 +47,8 @@ function BitsOfInfoActionPage (props) {
       </div>
       <div style={styles.actionContainer}>
         <p style={styles.description}>Hire a hacker to write an algorithm to search the internet</p>
-        <p style={styles.description}>Cost: $40 for +1 bit of info per second</p>
-        <p style={styles.description}>Current Amount: {resources.algorithms.currentCount}</p>
+        <p style={styles.description}>Cost: ${Math.round(algorithms.cost)} for +1 bit of info per second</p>
+        <p style={styles.description}>Current Amount: {algorithms.currentCount}</p>
         <button className = {'button'}style = {styles.actionButton} 
           onClick ={()=>{
             buyAlgorithm()
@@ -52,16 +62,20 @@ function BitsOfInfoActionPage (props) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  incrementBitsOfInfo: () => dispatch(incrementBitsOfInfoAction()),
+  incrementBitsOfInfo: (incrementValue) => dispatch(incrementBitsOfInfoAction(incrementValue)),
   incrementAlgorithms: () => dispatch(incrementAlgorithmsAction()),
+  increaseAlgorithmCost: () => dispatch(increaseAlgorithmCostAction()),
   addNewStoryPoint: (storyPoint) => dispatch(addNewStoryPointAction(storyPoint)),
-  decrementMoney: (decrementValue) => dispatch(decrementMoneyAction(decrementValue))
+  decrementMoney: (decrementValue) => dispatch(decrementMoneyAction(decrementValue)),
+  setFinanceTabTrue: () => dispatch(setFinanceTabTrueAction())
 })
 
 const mapStateToProps = (state) => ({
   bitsOfInfo: state.resources.bitsOfInfo,
   currentStoryPoints: state.currentStoryPoints,
-  resources: state.resources
+  resources: state.resources,
+  algorithms: state.resources.algorithms,
+  tabs: state.tabs
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BitsOfInfoActionPage)

@@ -5,7 +5,7 @@ export const resources = (state={}, action) => {
     case "INCREMENT_BITSOFINFO":
       const incrementNewState = Object.assign({}, state)
       incrementNewState.bitsOfInfo.currentCount = 
-        incrementNewState.bitsOfInfo.currentCount + 1
+        incrementNewState.bitsOfInfo.currentCount + action.incrementValue
       return incrementNewState
     case "DECREMENT_BITSOFINFO":
       const decrementNewState = Object.assign({}, state)
@@ -26,7 +26,14 @@ export const resources = (state={}, action) => {
       const incrementAlgorithmsNewState = Object.assign({}, state)
         incrementAlgorithmsNewState.algorithms.currentCount =
           incrementAlgorithmsNewState.algorithms.currentCount + 1
+        incrementAlgorithmsNewState.bitsOfInfo.bitsPerSecond =
+           incrementAlgorithmsNewState.algorithms.currentCount * incrementAlgorithmsNewState.algorithms.currentEffeiency
       return incrementAlgorithmsNewState
+    case "INCREASE_ALOGRITHM_COST":
+      const increaseAlogrithmCostNewState = Object.assign({}, state)
+      increaseAlogrithmCostNewState.algorithms.cost = 
+        increaseAlogrithmCostNewState.algorithms.cost * 1.05
+    return increaseAlogrithmCostNewState
     default:
       return state
   }

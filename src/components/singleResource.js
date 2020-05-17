@@ -10,7 +10,7 @@ function SingleResource (props) {
       onClick={props.customClickEvent}
     > 
       <h3 style = {styles.title}>{props.resource.title}</h3>
-      <h3 style = {styles.number}>{props.resource.currentCount}</h3>
+      <h3 style = {styles.number}>{Math.round(props.resource.currentCount)}</h3>
     </div>
   )
 }

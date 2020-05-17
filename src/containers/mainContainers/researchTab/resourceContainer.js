@@ -1,13 +1,28 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import SingleResource from '../../../components/singleResource'
 import actions from '../../../actions'
 
 const {currentActionPageActions: {setCurrentActionPageAction}} = actions
+const {resourcesActions: {incrementBitsOfInfoAction}} = actions
 
 function ResourceContainer(props) {
+  
+  const [incrementInterval, setIncrementInterval] = useState(false)
+  const {resources: {bitsOfInfo, money}} = props
 
-  const {resources: {bitsOfInfo,money}} = props
+  const startIncrementInterval = () => {
+    if (incrementInterval === false){
+      setIncrementInterval(true)
+      console.log('resource')
+      setInterval(()=>{
+        props.incrementBitsOfInfo(bitsOfInfo.bitsPerSecond)
+      },1000)
+    }
+  }
+  
+    startIncrementInterval()
+  
 
   return (
     <div style = {styles.div}>
@@ -41,7 +56,9 @@ const mapStateToProps = (state) => ({
   currentActionPage: state.currentActionPage
 })
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentActionPage: (actionPage) => dispatch(setCurrentActionPageAction(actionPage))
+  setCurrentActionPage: (actionPage) => dispatch(setCurrentActionPageAction(actionPage)),
+  incrementBitsOfInfo: (incrementValue) => dispatch(incrementBitsOfInfoAction(incrementValue)),
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResourceContainer)

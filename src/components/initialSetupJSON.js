@@ -13,12 +13,17 @@ export const initialSetup= {
     algorithms: {
       currentCount: 0,
       currentEffeiency: 1,
+      cost: 40
     }
   },
   locations: {
     newsOutlets: {
       title: "News Outlets"
     }
+  },
+  tabs: {
+    research: true,
+    finance: false,
   }
 }
 

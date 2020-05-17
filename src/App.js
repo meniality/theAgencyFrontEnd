@@ -10,6 +10,7 @@ import {story} from './components/story'
 const {resourcesActions: {setInitialResourcesAction}} = actions
 const {locationsActions:{setInitialLocationsActions}} = actions
 const {currentStoryPointsActions:{setDefaultCurrentStoryPointsAction}} = actions
+const {tabsActions:{setTabsAction}} = actions
 
 function App(props) {
 
@@ -17,21 +18,22 @@ function App(props) {
     props.setInitialResources(window.localStorage.getItem('resources'))
     props.setInitialLocation(window.localStorage.getItem('locations'))
     props.setDefaultCurrentStoryPoint(window.localStorage.getItem('CurrentStoryPoints'))
+    props.setTabs(window.localStorage.getItem('tabs'))
   }
 
   const SetDefaultOpen = () => {
     props.setInitialResources(initialSetup.resources)
     props.setInitialLocation(initialSetup.locations)
     props.setDefaultCurrentStoryPoint([Object.keys(story)[0]])
+    props.setTabs(initialSetup.tabs)
   }
 
   window.localStorage.getItem('resources')
     ? setSaveFromLocalStorage()
     : SetDefaultOpen()
-      
-  
 
   return (
+    console.log('app'),
       <div className="App">
         <Header/>
         <Main />
@@ -42,7 +44,8 @@ function App(props) {
 const mapDispatchToProps = (dispatch) => ({
   setInitialResources: (resources) => dispatch(setInitialResourcesAction(resources)),
   setInitialLocation: (locations) => dispatch(setInitialLocationsActions(locations)),
-  setDefaultCurrentStoryPoint: (storyPoints) => dispatch(setDefaultCurrentStoryPointsAction(storyPoints))
+  setDefaultCurrentStoryPoint: (storyPoints) => dispatch(setDefaultCurrentStoryPointsAction(storyPoints)),
+  setTabs: (tabs) => dispatch(setTabsAction(tabs)),
 })
 
 export default connect(null, mapDispatchToProps)(App)
