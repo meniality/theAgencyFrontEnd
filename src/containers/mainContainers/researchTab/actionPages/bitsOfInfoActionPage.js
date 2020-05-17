@@ -11,10 +11,11 @@ function BitsOfInfoActionPage (props) {
 
   const {currentStoryPoints, resources, algorithms, tabs} = props
 
-  const checkForStoryPoint = () => {
-    if (!currentStoryPoints.includes('firstBit'))
-      props.addNewStoryPoint('firstBit')
+  const checkForStoryPoint = (storyPoint) => {
+    if (!currentStoryPoints.includes(storyPoint))
+      props.addNewStoryPoint(storyPoint)
   }
+
 
   const checkForFinanceTabVisibility = () => {
     if (resources.bitsOfInfo.currentCount >= 40 && tabs.finance === false){
@@ -38,7 +39,7 @@ function BitsOfInfoActionPage (props) {
         <button className = {'button'}style = {styles.actionButton} 
           onClick ={()=>{
             props.incrementBitsOfInfo(1)
-            checkForStoryPoint()
+            checkForStoryPoint('firstBit')
             checkForFinanceTabVisibility()
           }
         }>
@@ -52,6 +53,7 @@ function BitsOfInfoActionPage (props) {
         <button className = {'button'}style = {styles.actionButton} 
           onClick ={()=>{
             buyAlgorithm()
+            checkForStoryPoint('firstAlgorithm')
           }
         }>
           +1 algorithm
