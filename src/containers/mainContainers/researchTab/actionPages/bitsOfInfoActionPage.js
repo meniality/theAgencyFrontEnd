@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import actions from '../../../../actions'
+import {FaRegMinusSquare} from 'react-icons/fa'
+import { IconContext } from "react-icons";
 
 const {resourcesActions: {incrementBitsOfInfoAction, incrementAlgorithmsAction, decrementMoneyAction, increaseAlgorithmCostAction}} = actions
 const {currentStoryPointsActions:{addNewStoryPointAction}}=actions
 const {tabsActions:{setFinanceTabTrueAction}} = actions
-const {actionsVisibilityActions:{setHireAHackerVisibleTrueAction}} = actions
+const {actionsVisibilityActions:{setHireAHackerVisibleTrueAction, toggleSearchTheInternetMinimizedAction}} = actions
 
 
 function BitsOfInfoActionPage (props) {
@@ -23,6 +25,14 @@ function BitsOfInfoActionPage (props) {
     }
   }
 
+  const minimizedActionDiv = () => {
+    return (
+      <div style={styles.actionContainer}>
+        <p style = {styles.description}>test div</p>
+      </div>
+    )
+  }
+
   const checkForHireAHackerVisibility = () => {
     if (resources.money.currentCount >= 40 && actionsVisibility.research.bitsOfInfo.hireAHacker.visible === false){
       props.setHireAHackerVisibleTrue()
@@ -38,20 +48,31 @@ function BitsOfInfoActionPage (props) {
   }
 
   const createBitsOfInfoActionTab = () => {
-    return(
-      <div style={styles.actionContainer}>
-        <p style={styles.description}>Search the Internet for proof of the unknown</p>
-        <button className = {'button'}style = {styles.actionButton} 
-          onClick ={()=>{
-            props.incrementBitsOfInfo(1)
-            checkForStoryPoint('firstBit')
-            checkForFinanceTabVisibility()
-          }
-        }>
-          +1 bit of info
-        </button>
-      </div>
-    )
+    console.log(actionsVisibility)
+    if(actionsVisibility.research.bitsOfInfo.searchTheInternet.minimized === false){
+      return(
+        <div style={styles.actionContainer}>
+          <div style={styles.topDescriptionDiv}>
+            <p style={styles.description}>Search the Internet for proof of the unknown</p>
+            <div style={styles.minusButton}>
+              <FaRegMinusSquare onClick= {()=>{props.toggleSearchTheInternetMinimized()}}/>
+            </div>
+          </div>
+          <button className = {'button'}style = {styles.actionButton} 
+            onClick ={()=>{
+              props.incrementBitsOfInfo(1)
+              checkForStoryPoint('firstBit')
+              checkForFinanceTabVisibility()
+            }
+          }>
+            +1 bit of info
+          </button>
+        </div>
+      )
+    }
+    else{
+      return minimizedActionDiv()
+    }
   }
 
   const createHireAHackerTab = () => {
@@ -77,6 +98,7 @@ function BitsOfInfoActionPage (props) {
   useEffect(() => {
     checkForHireAHackerVisibility()
   })
+
   return (
     <div style = {styles.div}>
       <p style={styles.title}>Bits Of Information</p>
@@ -93,7 +115,8 @@ const mapDispatchToProps = (dispatch) => ({
   addNewStoryPoint: (storyPoint) => dispatch(addNewStoryPointAction(storyPoint)),
   decrementMoney: (decrementValue) => dispatch(decrementMoneyAction(decrementValue)),
   setFinanceTabTrue: () => dispatch(setFinanceTabTrueAction()),
-  setHireAHackerVisibleTrue: () => dispatch(setHireAHackerVisibleTrueAction())
+  setHireAHackerVisibleTrue: () => dispatch(setHireAHackerVisibleTrueAction()),
+  toggleSearchTheInternetMinimized: () => dispatch(toggleSearchTheInternetMinimizedAction())
 })
 
 const mapStateToProps = (state) => ({
@@ -112,6 +135,17 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  topDescriptionDiv:{
+    textAlign: 'center',
+    display: 'inline',
+    width: '100%',
+    paddingBottom: 5,
+  },
+  minusButton:{
+    display: 'inline',
+    height: 10,
+    float: 'right'
   },
   title: {
     fontSize: 30,
@@ -134,7 +168,8 @@ const styles = {
   description: {
     fontFamily: 'Cormorant',
     margin: 0,
-    paddingBottom: 5
+    paddingBottom: 5,
+    display: 'inline',
   },
   actionButton: {
     height: 35,
