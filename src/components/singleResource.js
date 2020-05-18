@@ -38,7 +38,6 @@ const styles = {
   },
   
   title: {
-    // paddingLeft: 5,
     margin: 0
   },
   number: {

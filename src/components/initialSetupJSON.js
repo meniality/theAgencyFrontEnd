@@ -1,12 +1,12 @@
 export const initialSetup= {
   resources: {
     bitsOfInfo: {
-        currentCount: 0, 
+        currentCount: 180, 
         title: "Bits Of Info:",
         perSecond: 0
     },
     money: {
-      currentCount: 400,
+      currentCount: 0,
       title: "Bank Account: $",
       perSecond: 0
     },
@@ -24,6 +24,28 @@ export const initialSetup= {
   tabs: {
     research: true,
     finance: false,
+  },
+  actionVisibility:{
+    research: {
+      bitsOfInfo: {
+        searchTheInternet:{
+          visible: true,
+          minimized: false
+        },
+        hireAHacker:{
+          visible:false,
+          minimized: false
+        }
+      }
+    },
+    finance: {
+      newsOutlets:{
+        turnIn40Bits:{
+          visible: true,
+          minimized: false
+        }
+      }
+    }
   }
 }
 

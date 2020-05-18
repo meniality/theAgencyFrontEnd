@@ -1,25 +1,31 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import actions from '../../../../actions'
 
 const {resourcesActions: {incrementBitsOfInfoAction, incrementAlgorithmsAction, decrementMoneyAction, increaseAlgorithmCostAction}} = actions
 const {currentStoryPointsActions:{addNewStoryPointAction}}=actions
 const {tabsActions:{setFinanceTabTrueAction}} = actions
+const {actionsVisibilityActions:{setHireAHackerVisibleTrueAction}} = actions
 
 
 function BitsOfInfoActionPage (props) {
 
-  const {currentStoryPoints, resources, algorithms, tabs} = props
+  const {currentStoryPoints, resources, algorithms, tabs, actionsVisibility} = props
 
   const checkForStoryPoint = (storyPoint) => {
     if (!currentStoryPoints.includes(storyPoint))
       props.addNewStoryPoint(storyPoint)
   }
 
-
   const checkForFinanceTabVisibility = () => {
     if (resources.bitsOfInfo.currentCount >= 40 && tabs.finance === false){
       props.setFinanceTabTrue()
+    }
+  }
+
+  const checkForHireAHackerVisibility = () => {
+    if (resources.money.currentCount >= 40 && actionsVisibility.research.bitsOfInfo.hireAHacker.visible === false){
+      props.setHireAHackerVisibleTrue()
     }
   }
 
@@ -31,9 +37,8 @@ function BitsOfInfoActionPage (props) {
     }
   }
 
-  return (
-    <div style = {styles.div}>
-      <p style={styles.title}>Bits Of Information</p>
+  const createBitsOfInfoActionTab = () => {
+    return(
       <div style={styles.actionContainer}>
         <p style={styles.description}>Search the Internet for proof of the unknown</p>
         <button className = {'button'}style = {styles.actionButton} 
@@ -46,19 +51,37 @@ function BitsOfInfoActionPage (props) {
           +1 bit of info
         </button>
       </div>
-      <div style={styles.actionContainer}>
-        <p style={styles.description}>Hire a hacker to write an algorithm to search the internet</p>
-        <p style={styles.description}>Cost: ${Math.round(algorithms.cost)} for +1 bit of info per second</p>
-        <p style={styles.description}>Current Amount: {algorithms.currentCount}</p>
-        <button className = {'button'}style = {styles.actionButton} 
-          onClick ={()=>{
-            buyAlgorithm()
-            checkForStoryPoint('firstAlgorithm')
-          }
-        }>
-          +1 algorithm
-        </button>
-      </div>
+    )
+  }
+
+  const createHireAHackerTab = () => {
+    if (actionsVisibility.research.bitsOfInfo.hireAHacker.visible === true){
+      return (
+        <div style={styles.actionContainer}>
+          <p style={styles.description}>Hire a hacker to write an algorithm to search the internet</p>
+          <p style={styles.description}>Cost: ${Math.round(algorithms.cost)} for +1 bit of info per second</p>
+          <p style={styles.description}>Current Amount: {algorithms.currentCount}</p>
+          <button className = {'button'}style = {styles.actionButton} 
+            onClick ={()=>{
+              buyAlgorithm()
+              checkForStoryPoint('firstAlgorithm')
+            }
+          }>
+            +1 algorithm
+          </button>
+        </div>
+      )
+    }
+  }
+
+  useEffect(() => {
+    checkForHireAHackerVisibility()
+  })
+  return (
+    <div style = {styles.div}>
+      <p style={styles.title}>Bits Of Information</p>
+      {createBitsOfInfoActionTab()}
+      {createHireAHackerTab()}
     </div>
   )
 }
@@ -69,7 +92,8 @@ const mapDispatchToProps = (dispatch) => ({
   increaseAlgorithmCost: () => dispatch(increaseAlgorithmCostAction()),
   addNewStoryPoint: (storyPoint) => dispatch(addNewStoryPointAction(storyPoint)),
   decrementMoney: (decrementValue) => dispatch(decrementMoneyAction(decrementValue)),
-  setFinanceTabTrue: () => dispatch(setFinanceTabTrueAction())
+  setFinanceTabTrue: () => dispatch(setFinanceTabTrueAction()),
+  setHireAHackerVisibleTrue: () => dispatch(setHireAHackerVisibleTrueAction())
 })
 
 const mapStateToProps = (state) => ({
@@ -77,7 +101,8 @@ const mapStateToProps = (state) => ({
   currentStoryPoints: state.currentStoryPoints,
   resources: state.resources,
   algorithms: state.resources.algorithms,
-  tabs: state.tabs
+  tabs: state.tabs,
+  actionsVisibility: state.actionsVisibility
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BitsOfInfoActionPage)
