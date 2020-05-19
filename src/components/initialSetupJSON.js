@@ -6,7 +6,7 @@ export const initialSetup= {
         perSecond: 0
     },
     money: {
-      currentCount: 0,
+      currentCount: 400,
       title: "Bank Account: $",
       perSecond: 0
     },

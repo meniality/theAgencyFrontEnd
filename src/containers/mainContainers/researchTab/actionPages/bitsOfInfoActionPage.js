@@ -7,7 +7,7 @@ import { IconContext } from "react-icons";
 const {resourcesActions: {incrementBitsOfInfoAction, incrementAlgorithmsAction, decrementMoneyAction, increaseAlgorithmCostAction}} = actions
 const {currentStoryPointsActions:{addNewStoryPointAction}}=actions
 const {tabsActions:{setFinanceTabTrueAction}} = actions
-const {actionsVisibilityActions:{setHireAHackerVisibleTrueAction, toggleSearchTheInternetMinimizedAction}} = actions
+const {actionsVisibilityActions:{setHireAHackerVisibleTrueAction, toggleSearchTheInternetMinimizedAction, toggleHireAHackerMinimizedAction}} = actions
 
 
 function BitsOfInfoActionPage (props) {
@@ -23,6 +23,16 @@ function BitsOfInfoActionPage (props) {
     if (resources.bitsOfInfo.currentCount >= 40 && tabs.finance === false){
       props.setFinanceTabTrue()
     }
+  }
+
+  const createMinusButton = (minimizeAction) => {
+    return (
+      <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "global-class-name" }}>
+        <div style={styles.minusButton}>
+          <FaRegMinusSquare onClick= {()=>{minimizeAction()}}/>
+        </div>
+      </IconContext.Provider>
+    )
   }
 
   const minimizedActionDiv = (text, maximizeFunction) => {
@@ -58,11 +68,7 @@ function BitsOfInfoActionPage (props) {
         <div style={styles.actionContainer}>
           <div style={styles.topDescriptionDiv}>
             <p style={styles.description}>Search the Internet for proof of the unknown</p>
-              <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "global-class-name" }}>
-                <div style={styles.minusButton}>
-                  <FaRegMinusSquare onClick= {()=>{props.toggleSearchTheInternetMinimized()}}/>
-                </div>
-              </IconContext.Provider>
+              {createMinusButton(props.toggleSearchTheInternetMinimized)}
           </div>
           <button className = {'button'}style = {styles.actionButton} 
             onClick ={()=>{
@@ -83,10 +89,13 @@ function BitsOfInfoActionPage (props) {
   }
 
   const createHireAHackerTab = () => {
-    if (actionsVisibility.research.bitsOfInfo.hireAHacker.visible === true){
+    if (actionsVisibility.research.bitsOfInfo.hireAHacker.visible === true && actionsVisibility.research.bitsOfInfo.hireAHacker.minimized === false){
       return (
         <div style={styles.actionContainer}>
-          <p style={styles.description}>Hire a hacker to write an algorithm to search the internet</p>
+          <div style={styles.topDescriptionDiv}>
+            <p style={styles.description}>Hire a hacker to write an algorithm to search the internet</p>
+            {createMinusButton(props.toggleHireAHackerMinimized)}
+          </div>
           <p style={styles.description}>Cost: ${Math.round(algorithms.cost)} for +1 bit of info per second</p>
           <p style={styles.description}>Current Amount: {algorithms.currentCount}</p>
           <button className = {'button'}style = {styles.actionButton} 
@@ -99,6 +108,10 @@ function BitsOfInfoActionPage (props) {
           </button>
         </div>
       )
+    }
+    else if (actionsVisibility.research.bitsOfInfo.hireAHacker.visible === true && actionsVisibility.research.bitsOfInfo.hireAHacker.minimized === true) {
+      const text = "Hire a Hacker"
+      return minimizedActionDiv(text, props.toggleHireAHackerMinimized)
     }
   }
 
@@ -122,8 +135,10 @@ const mapDispatchToProps = (dispatch) => ({
   addNewStoryPoint: (storyPoint) => dispatch(addNewStoryPointAction(storyPoint)),
   decrementMoney: (decrementValue) => dispatch(decrementMoneyAction(decrementValue)),
   setFinanceTabTrue: () => dispatch(setFinanceTabTrueAction()),
+  toggleSearchTheInternetMinimized: () => dispatch(toggleSearchTheInternetMinimizedAction()),
   setHireAHackerVisibleTrue: () => dispatch(setHireAHackerVisibleTrueAction()),
-  toggleSearchTheInternetMinimized: () => dispatch(toggleSearchTheInternetMinimizedAction())
+  toggleHireAHackerMinimized: () => dispatch(toggleHireAHackerMinimizedAction())
+
 })
 
 const mapStateToProps = (state) => ({
