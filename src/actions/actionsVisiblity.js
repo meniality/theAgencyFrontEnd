@@ -2,12 +2,13 @@ const setInitialActionsVisibilityAction = (actionsVisibility) => ({type: "SET_IN
 const setHireAHackerVisibleTrueAction = () => ({type: "SET_HIRE_A_HACKER_VISIBLE_TRUE"})
 const toggleSearchTheInternetMinimizedAction = () => ({type: "TOGGLE_SEARCH_THE_INTERNET_MINIMIZED"})
 const toggleHireAHackerMinimizedAction = () => ({type: "TOGGLE_HIRE_A_HACKER_MINIMIZED"})
-
+const toggleTurnIn40BitsMinimizedAction = () => ({type: "TOGGLE_TURN_IN_40_BITS_MINIMZED"})
 
 export const actionsVisibilityActions = {
   setInitialActionsVisibilityAction,
   setHireAHackerVisibleTrueAction,
   toggleSearchTheInternetMinimizedAction,
-  toggleHireAHackerMinimizedAction
+  toggleHireAHackerMinimizedAction,
+  toggleTurnIn40BitsMinimizedAction
 }
 

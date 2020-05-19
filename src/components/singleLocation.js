@@ -3,28 +3,27 @@ import React from 'react';
 function SingleLocation (props) {
 
   return (
-    <div 
-      style = {styles.div}
+    <div style={styles.outerDiv} 
       className = 'singleResourceDiv'
       onClick={props.customClickEvent}
-    > 
-      <h3 style = {styles.title}>{props.location.title}</h3>
+    >
+        <h3>{props.location.title}</h3>
     </div>
   )
 }
 
 const styles = {
-  div: {
+  outerDiv:{
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 4,
+    width: '98%',
+    height: '10vh',
     display: 'flex',
     color: 'rgb(68, 58, 58)',
     fontFamily: 'Cormorant',
-  },
-  
-  title: {
-    paddingLeft: 5
-  },
-  number: {
-    marginLeft: 10
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 }
 

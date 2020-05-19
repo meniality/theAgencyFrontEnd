@@ -29,6 +29,7 @@ const styles = {
     borderWidth: 1,
     borderRadius: 4,
     width: '98%',
+    height: '10vh'
   },
   div: {
     display: 'flex',
@@ -48,7 +49,6 @@ const styles = {
     paddingLeft: 10,
     color: 'rgb(68, 58, 58)',
     fontFamily: 'Cormorant',
-    // margin: 0
     marginTop: -5
   }
 }

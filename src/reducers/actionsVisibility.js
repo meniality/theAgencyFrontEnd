@@ -16,6 +16,11 @@ export const actionsVisibility = (state={}, action) => {
       const hireAHackerVisibleNewState= Object.assign({}, state)
       hireAHackerVisibleNewState.research.bitsOfInfo.hireAHacker.visible = true
       return hireAHackerVisibleNewState
+    case "TOGGLE_TURN_IN_40_BITS_MINIMZED":
+      const toggleTurnIn40BitsMinimizedNewState = Object.assign({}, state)
+      toggleTurnIn40BitsMinimizedNewState.finance.newsOutlets.turnIn40Bits.minimized = 
+        !toggleTurnIn40BitsMinimizedNewState.finance.newsOutlets.turnIn40Bits.minimized
+      return toggleTurnIn40BitsMinimizedNewState
     default:
       return state
   }

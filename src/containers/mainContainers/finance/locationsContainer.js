@@ -37,5 +37,6 @@ const styles = {
     borderTopStyle: 'none',
     borderWidth: 2,
     borderColor: 'rgb(86, 85, 85)',
+    alignItems: 'center'
   }
 }
