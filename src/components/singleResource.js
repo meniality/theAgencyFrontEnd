@@ -34,12 +34,13 @@ const styles = {
   div: {
     display: 'flex',
     color: 'rgb(68, 58, 58)',
-    fontFamily: 'Cormorant',
+    fontFamily: 'DM Mono',
     margin: 10,
   },
   
   title: {
-    margin: 0
+    margin: 0,
+    fontSize: 18
   },
   number: {
     margin: 0,
@@ -48,7 +49,7 @@ const styles = {
   perSecond:{
     paddingLeft: 10,
     color: 'rgb(68, 58, 58)',
-    fontFamily: 'Cormorant',
+    fontFamily: 'DM Mono',
     marginTop: -5
   }
 }

@@ -1,7 +1,7 @@
 export const initialSetup= {
   resources: {
     bitsOfInfo: {
-        currentCount: 180, 
+        currentCount: 400, 
         title: "Bits Of Info:",
         perSecond: 0
     },

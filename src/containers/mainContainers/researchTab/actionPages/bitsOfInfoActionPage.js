@@ -27,7 +27,7 @@ function BitsOfInfoActionPage (props) {
 
   const createMinusButton = (minimizeAction) => {
     return (
-      <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "global-class-name" }}>
+      <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "button" }}>
         <div style={styles.minusButton}>
           <FaRegMinusSquare onClick= {()=>{minimizeAction()}}/>
         </div>
@@ -39,7 +39,7 @@ function BitsOfInfoActionPage (props) {
     return (
       <div style={styles.minimizedDiv}>
         <p style = {styles.description}>{text}</p>
-        <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "global-class-name" }}>
+        <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "button" }}>
           <div style={styles.minusButton}>
             <FaRegPlusSquare onClick= {()=>{maximizeFunction()}}/>
           </div>
@@ -189,7 +189,7 @@ const styles = {
     margin: 5
   },
   description: {
-    fontFamily: 'Cormorant',
+    fontFamily: 'DM Mono',
     margin: 0,
     paddingBottom: 5,
     display: 'inline',

@@ -21,7 +21,7 @@ const styles = {
     height: '10vh',
     display: 'flex',
     color: 'rgb(68, 58, 58)',
-    fontFamily: 'Cormorant',
+    fontFamily: 'DM Mono',
     justifyContent: 'center',
     alignItems: 'center'
   },

@@ -27,7 +27,7 @@ function actionsContainer (props) {
 
 const styles = {
   div: {
-    width: '50vw',
+    width: '45vw',
     borderBottomStyle: 'solid',
     borderWidth: 2,
     borderColor: 'rgb(86, 85, 85)',

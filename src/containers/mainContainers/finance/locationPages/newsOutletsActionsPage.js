@@ -26,7 +26,7 @@ function NewsOutletsActionPage (props) {
 
   const createMinusButton = (minimizeAction) => {
     return (
-      <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "global-class-name" }}>
+      <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "button" }}>
         <div style={styles.minusButton}>
           <FaRegMinusSquare onClick= {()=>{minimizeAction()}}/>
         </div>
@@ -38,7 +38,7 @@ function NewsOutletsActionPage (props) {
     return (
       <div style={styles.minimizedDiv}>
         <p style = {styles.description}>{text}</p>
-        <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "global-class-name" }}>
+        <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "button" }}>
           <div style={styles.minusButton}>
             <FaRegPlusSquare onClick= {()=>{maximizeFunction()}}/>
           </div>
@@ -79,6 +79,23 @@ function NewsOutletsActionPage (props) {
     <div style = {styles.div}>
       <p style={styles.title}>News Outlets</p>
       {createTurnInBitsOfInfoToTabloids()}
+      <div style ={styles.actionContainer}>
+          <div style={styles.topDescriptionDiv}>
+            <p style= {styles.description}>
+              Turn in 40 bits of information to the tabloids for $10
+            </p>
+            {createMinusButton(props.toggleTurnIn40BitsMinimized)}
+          </div>
+          <p>Current Bits of information:{props.bitsOfInfo} Current Money:${Math.round(props.money)}</p>
+          <button className = {'button'}style = {styles.actionButton} 
+            onClick = {() => {
+              sellInfoForMoney()
+              checkForStoryPoint()
+            }
+          }>
+            Turn In
+          </button>
+        </div>
     </div>
   )
 }
@@ -131,10 +148,10 @@ const styles = {
     borderColor: 'rgba(105, 105, 105, 0.68)',
     padding: '5px 0px 5px 0px',
     borderRadius: 3,
-    margin: 5
+    margin: 5,
+    fontFamily: 'DM Mono',
   },
   description: {
-    fontFamily: 'Cormorant',
     margin: 0,
     paddingBottom: 5,
     display: 'inline',
