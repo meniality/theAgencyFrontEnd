@@ -5,6 +5,7 @@ import {currentLocationActionPageActions} from './currentLocationActionPage'
 import {currentStoryPointsActions} from './currentStoryPoints'
 import {tabsActions} from './tabs'
 import {incrementStartedActions} from './incrementStarted'
+import {actionsVisibilityActions} from './actionsVisiblity'
 
 export default {
   resourcesActions,
@@ -13,5 +14,6 @@ export default {
   currentLocationActionPageActions,
   currentStoryPointsActions,
   tabsActions,
-  incrementStartedActions
+  incrementStartedActions,
+  actionsVisibilityActions
 }

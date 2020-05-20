@@ -15,7 +15,7 @@ const styles = {
   outerDiv: {
     display: 'flex',
     justifyContent: 'center',
-    fontFamily: 'Cormorant',
+    fontFamily: 'Special Elite',
     height: 'fit-content',
     margin: 10
   },
@@ -23,7 +23,7 @@ const styles = {
     padding: 13,
     display: 'flex',
     justifyContent: 'center',
-    fontFamily: 'Cormorant',
+    fontFamily: 'Special Elite',
     backgroundColor: "rgba(128, 128, 128, 0.22)",
     borderRadius: 4
   }

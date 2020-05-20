@@ -44,7 +44,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: "20vw",
+    width: "25vw",
     height: 500,
     marginLeft: 5,
     borderStyle: 'solid',

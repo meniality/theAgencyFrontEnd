@@ -3,14 +3,27 @@
   src: url('https://fonts.googleapis.com/css2?family=Cormorant:wght@500&display=swap')
 }
 
+@font-face{
+  font-family: 'Special Elite', cursive;
+  src: url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+}
+
 .singleResourceDiv:hover{
   background-color: rgba(177, 177, 177, 0.42);
+  cursor: pointer
 }
 
 .navBarTab:focus{
   outline: none
 }
+.navBarTab:hover{
+  cursor: pointer;
+}
 
 .button:focus{
-  outline: none
+  outline: none;
+}
+
+.button:hover{
+  cursor: pointer
 }

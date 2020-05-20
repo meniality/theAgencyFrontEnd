@@ -29,17 +29,18 @@ const styles = {
     borderWidth: 1,
     borderRadius: 4,
     width: '98%',
+    height: '10vh'
   },
   div: {
     display: 'flex',
     color: 'rgb(68, 58, 58)',
-    fontFamily: 'Cormorant',
+    fontFamily: 'DM Mono',
     margin: 10,
   },
   
   title: {
-    // paddingLeft: 5,
-    margin: 0
+    margin: 0,
+    fontSize: 18
   },
   number: {
     margin: 0,
@@ -48,8 +49,7 @@ const styles = {
   perSecond:{
     paddingLeft: 10,
     color: 'rgb(68, 58, 58)',
-    fontFamily: 'Cormorant',
-    // margin: 0
+    fontFamily: 'DM Mono',
     marginTop: -5
   }
 }

@@ -11,6 +11,7 @@ const {resourcesActions: {setInitialResourcesAction}} = actions
 const {locationsActions:{setInitialLocationsActions}} = actions
 const {currentStoryPointsActions:{setDefaultCurrentStoryPointsAction}} = actions
 const {tabsActions:{setTabsAction}} = actions
+const {actionsVisibilityActions:{setInitialActionsVisibilityAction}} = actions
 
 function App(props) {
 
@@ -19,6 +20,7 @@ function App(props) {
     props.setInitialLocation(window.localStorage.getItem('locations'))
     props.setDefaultCurrentStoryPoint(window.localStorage.getItem('CurrentStoryPoints'))
     props.setTabs(window.localStorage.getItem('tabs'))
+    props.setInitialActionsVisibility(window.localStorage.getItem('actionsVisibility'))
   }
 
   const SetDefaultOpen = () => {
@@ -26,6 +28,7 @@ function App(props) {
     props.setInitialLocation(initialSetup.locations)
     props.setDefaultCurrentStoryPoint([Object.keys(story)[0]])
     props.setTabs(initialSetup.tabs)
+    props.setInitialActionsVisibility(initialSetup.actionVisibility)
   }
 
   window.localStorage.getItem('resources')
@@ -46,6 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
   setInitialLocation: (locations) => dispatch(setInitialLocationsActions(locations)),
   setDefaultCurrentStoryPoint: (storyPoints) => dispatch(setDefaultCurrentStoryPointsAction(storyPoints)),
   setTabs: (tabs) => dispatch(setTabsAction(tabs)),
+  setInitialActionsVisibility: (actionsVisibility) => dispatch(setInitialActionsVisibilityAction(actionsVisibility))
 })
 
 export default connect(null, mapDispatchToProps)(App)
