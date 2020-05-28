@@ -49,7 +49,7 @@ function Money(props) {
   }
 
   const createTurnInBitsOfInfoToTabloids = () => {
-    if(actionsVisibility.finance.newsOutlets.turnIn40Bits.minimized === false){
+    if(actionsVisibility.resource.money.turnIn40Bits.minimized === false){
       return (
         <div style ={styles.actionContainer}>
           <div style={styles.topDescriptionDiv}>

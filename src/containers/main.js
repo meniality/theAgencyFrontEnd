@@ -6,12 +6,12 @@ import ActionsContainer from './mainContainers/resourceTab/actionsContainer'
 
 function Main(props){
 
-  const[selectedTab, setSelectedTab] = useState('research')
+  const[selectedTab, setSelectedTab] = useState('resources')
   const {tabs} = props
 
   const selectTab = () => {
     switch(selectedTab) {
-      case 'research':
+      case 'resources':
         return (
           <>
             <ResourceContainer />
@@ -27,11 +27,11 @@ function Main(props){
       <button 
         className = "navBarTab"
         style = {
-          selectedTab === 'research'
+          selectedTab === 'resources'
           ? styles.greyTab
           : styles.tab
         }
-        onClick = {() => setSelectedTab('research')}>Research
+        onClick = {() => setSelectedTab('research')}>Resources
       </button>
     )
   }

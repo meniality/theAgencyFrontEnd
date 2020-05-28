@@ -43,7 +43,7 @@ function BitsOfInfoActionPage (props) {
   }
 
   const checkForHireAHackerVisibility = () => {
-    if (resources.money.currentCount >= 40 && actionsVisibility.research.bitsOfInfo.hireAHacker.visible === false){
+    if (resources.money.currentCount >= 40 && actionsVisibility.resource.bitsOfInfo.hireAHacker.visible === false){
       props.setHireAHackerVisibleTrue()
     }
   }
@@ -57,7 +57,7 @@ function BitsOfInfoActionPage (props) {
   }
 
   const createBitsOfInfoActionTab = () => {
-    if(actionsVisibility.research.bitsOfInfo.searchTheInternet.minimized === false){
+    if(actionsVisibility.resource.bitsOfInfo.searchTheInternet.minimized === false){
       return(
         <div style={styles.actionContainer}>
           <div style={styles.topDescriptionDiv}>
@@ -82,7 +82,7 @@ function BitsOfInfoActionPage (props) {
   }
 
   const createHireAHackerTab = () => {
-    if (actionsVisibility.research.bitsOfInfo.hireAHacker.visible === true && actionsVisibility.research.bitsOfInfo.hireAHacker.minimized === false){
+    if (actionsVisibility.resource.bitsOfInfo.hireAHacker.visible === true && actionsVisibility.resource.bitsOfInfo.hireAHacker.minimized === false){
       return (
         <div style={styles.actionContainer}>
           <div style={styles.topDescriptionDiv}>
@@ -102,7 +102,7 @@ function BitsOfInfoActionPage (props) {
         </div>
       )
     }
-    else if (actionsVisibility.research.bitsOfInfo.hireAHacker.visible === true && actionsVisibility.research.bitsOfInfo.hireAHacker.minimized === true) {
+    else if (actionsVisibility.resource.bitsOfInfo.hireAHacker.visible === true && actionsVisibility.resource.bitsOfInfo.hireAHacker.minimized === true) {
       const text = "Hire a Hacker"
       return minimizedActionDiv(text, props.toggleHireAHackerMinimized)
     }
