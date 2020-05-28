@@ -43,13 +43,14 @@ function BitsOfInfoActionPage (props) {
   }
 
   const checkForHireAHackerVisibility = () => {
-    if (resources.money.currentCount >= 40 && actionsVisibility.resource.bitsOfInfo.hireAHacker.visible === false){
+    if (resources.money.currentCount >= 10 && actionsVisibility.resource.bitsOfInfo.hireAHacker.visible === false){
       props.setHireAHackerVisibleTrue()
     }
   }
 
   const buyAlgorithm = () => {
     if (resources.money.currentCount >= algorithms.cost){
+      checkForStoryPoint('firstAlgorithm')
       props.incrementAlgorithms()
       props.decrementMoney(algorithms.cost)
       props.increaseAlgorithmCost()
@@ -94,7 +95,6 @@ function BitsOfInfoActionPage (props) {
           <button className = {'button'}style = {styles.actionButton} 
             onClick ={()=>{
               buyAlgorithm()
-              checkForStoryPoint('firstAlgorithm')
             }
           }>
             +1 algorithm

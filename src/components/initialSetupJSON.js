@@ -1,29 +1,37 @@
 export const initialSetup= {
   resources: {
     bitsOfInfo: {
+      visible: true,
         currentCount: 0, 
         title: "Bits Of Info:",
         perSecond: 0
     },
     money: {
+      visible: true,
       currentCount: 0,
-      title: "Bank Account: $",
+      title: "Money: $",
       perSecond: 0
     },
     algorithms: {
       currentCount: 0,
       currentEffeiency: 1,
       cost: 40
-    }
-  },
-  locations: {
-    newsOutlets: {
-      title: "News Outlets"
+    },
+    energy: {
+      title: 'Energy:',
+      visible: false,
+      unlocked: false,
+      currentCount: 0,
+      max: 100,
+      currentEffeiency: 1,
+      cost: {
+        bitsOfInfo: 400,
+        energy: 100
+      }
     }
   },
   tabs: {
-    research: true,
-    finance: false,
+    resources: true,
   },
   actionVisibility:{
     resource: {
@@ -44,14 +52,6 @@ export const initialSetup= {
         }
       }
     },
-    finance: {
-      newsOutlets:{
-        turnIn40Bits:{
-          visible: true,
-          minimized: false
-        }
-      }
-    }
   }
 }
 

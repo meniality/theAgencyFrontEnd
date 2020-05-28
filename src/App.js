@@ -17,7 +17,6 @@ function App(props) {
 
   const setSaveFromLocalStorage = () => {
     props.setInitialResources(window.localStorage.getItem('resources'))
-    props.setInitialLocation(window.localStorage.getItem('locations'))
     props.setDefaultCurrentStoryPoint(window.localStorage.getItem('CurrentStoryPoints'))
     props.setTabs(window.localStorage.getItem('tabs'))
     props.setInitialActionsVisibility(window.localStorage.getItem('actionsVisibility'))
@@ -25,7 +24,6 @@ function App(props) {
 
   const SetDefaultOpen = () => {
     props.setInitialResources(initialSetup.resources)
-    props.setInitialLocation(initialSetup.locations)
     props.setDefaultCurrentStoryPoint([Object.keys(story)[0]])
     props.setTabs(initialSetup.tabs)
     props.setInitialActionsVisibility(initialSetup.actionVisibility)
@@ -46,7 +44,6 @@ function App(props) {
 
 const mapDispatchToProps = (dispatch) => ({
   setInitialResources: (resources) => dispatch(setInitialResourcesAction(resources)),
-  setInitialLocation: (locations) => dispatch(setInitialLocationsActions(locations)),
   setDefaultCurrentStoryPoint: (storyPoints) => dispatch(setDefaultCurrentStoryPointsAction(storyPoints)),
   setTabs: (tabs) => dispatch(setTabsAction(tabs)),
   setInitialActionsVisibility: (actionsVisibility) => dispatch(setInitialActionsVisibilityAction(actionsVisibility))

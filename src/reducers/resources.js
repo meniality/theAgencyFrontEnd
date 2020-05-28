@@ -34,6 +34,10 @@ export const resources = (state={}, action) => {
       increaseAlogrithmCostNewState.algorithms.cost = 
         increaseAlogrithmCostNewState.algorithms.cost * 1.05
     return increaseAlogrithmCostNewState
+    case "TOGGLE_ENERGY_VISIBLE":
+      const toggleEnergyVisibleNewState = Object.assign({}, state)
+      toggleEnergyVisibleNewState.energy.visible = true
+      return toggleEnergyVisibleNewState
     default:
       return state
   }

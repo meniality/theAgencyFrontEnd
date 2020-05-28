@@ -9,7 +9,7 @@ const {incrementStartedActions:{setIncrementStartedTrueAction}} = actions
 
 function ResourceContainer(props) {
   
-  const {resources: {bitsOfInfo, money}} = props
+  const {resources: {bitsOfInfo, money, energy}} = props
 
   const startIncrementInterval = () => {
     if (props.incrementStarted === false){
@@ -19,6 +19,17 @@ function ResourceContainer(props) {
       },1000)
     }
   }
+
+  const makeResource = (resource, clickEvent) => {
+    if(resource.visible===true){
+      return (
+        <SingleResource
+          customClickEvent={clickEvent}
+          resource={resource}
+        />
+      )
+    }
+  }
   
   useEffect(()=>{
     startIncrementInterval()
@@ -26,15 +37,9 @@ function ResourceContainer(props) {
 
   return (
     <div style = {styles.div}>
-      <SingleResource
-      customClickEvent={()=> {props.setCurrentActionPage('money')}}
-      resource={money}
-      >
-      </SingleResource>
-      <SingleResource 
-        customClickEvent={()=> {props.setCurrentActionPage('bitsOfInfo')}} 
-        resource={bitsOfInfo}>
-      </SingleResource>
+      {makeResource(money, ()=> {props.setCurrentActionPage('money')})}
+      {makeResource(bitsOfInfo, ()=> {props.setCurrentActionPage('bitsOfInfo')})}
+      {makeResource(energy, ()=> {props.setCurrentActionPage('energy')})}
     </div>
   )
 }
