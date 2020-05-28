@@ -19,12 +19,6 @@ function BitsOfInfoActionPage (props) {
       props.addNewStoryPoint(storyPoint)
   }
 
-  const checkForFinanceTabVisibility = () => {
-    if (resources.bitsOfInfo.currentCount >= 40 && tabs.finance === false){
-      props.setFinanceTabTrue()
-    }
-  }
-
   const createMinusButton = (minimizeAction) => {
     return (
       <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "button" }}>
@@ -74,7 +68,6 @@ function BitsOfInfoActionPage (props) {
             onClick ={()=>{
               props.incrementBitsOfInfo(1)
               checkForStoryPoint('firstBit')
-              checkForFinanceTabVisibility()
             }
           }>
             +1 bit of info

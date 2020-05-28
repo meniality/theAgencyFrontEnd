@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import ResourceContainer from './mainContainers/researchTab/resourceContainer'
+import ResourceContainer from './mainContainers/resourceTab/resourceContainer'
 import StoryContainer from './mainContainers/storyContainer'
-import ActionsContainer from './mainContainers/researchTab/actionsContainer'
-import LocationContainer from './mainContainers/finance/locationsContainer'
-import LocationActionsContainer from './mainContainers/finance/locationActionsContainer'
+import ActionsContainer from './mainContainers/resourceTab/actionsContainer'
 
 function Main(props){
 
@@ -21,16 +19,6 @@ function Main(props){
             <StoryContainer/>
           </>
         )
-      case 'finance':
-        return (
-          <>
-            <LocationContainer />
-            <LocationActionsContainer />
-            <StoryContainer />
-          </>
-        )
-      default:
-        return null
     }
   }
 
@@ -48,28 +36,10 @@ function Main(props){
     )
   }
 
-  const createFinanceTab = () => {
-    if(tabs.finance === true){
-      return (
-        <button 
-          className = "navBarTab"
-          style = {
-            selectedTab === 'finance'
-            ? styles.greyTab
-            : styles.tab
-          } 
-          onClick = {() => setSelectedTab('finance')}>
-          Finance
-        </button>
-      )
-    }
-  }
-
   return(
     <div>
       <div style = {styles.navbar}>
        {createResearchTab()}
-       {createFinanceTab()}
       </div>
       <div style= {styles.div}>
         {selectTab()}
