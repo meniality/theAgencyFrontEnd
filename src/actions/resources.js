@@ -6,7 +6,7 @@ const decrementMoneyAction = (decrementValue) => ({type: "DECREMENT_MONEY", decr
 const incrementAlgorithmsAction = () => ({type: "INCREMENT_ALGORITHMS"})
 const increaseAlgorithmCostAction = () => ({type: "INCREASE_ALOGRITHM_COST"})
 const toggleEnergyVisibleAction = () => ({type: "TOGGLE_ENERGY_VISIBLE"})
-
+const toggleEneregyUnlockedAction = () => ({type : "TOGGLE_ENERGY_UNLOCKED"})
 
 export const resourcesActions = {
   setInitialResourcesAction,
@@ -17,4 +17,5 @@ export const resourcesActions = {
   incrementAlgorithmsAction,
   increaseAlgorithmCostAction,
   toggleEnergyVisibleAction,
+  toggleEneregyUnlockedAction
 }

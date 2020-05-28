@@ -20,6 +20,7 @@ function Money(props) {
   
   const sellInfoForMoney = () => {
    if (bitsOfInfo.currentCount >= 40){
+    checkForStoryPoint()
     props.decrementBitsOfInfo(40)
     props.incrementMoney(10)
    }
@@ -62,7 +63,6 @@ function Money(props) {
           <button className = {'button'}style = {styles.actionButton} 
             onClick = {() => {
               sellInfoForMoney()
-              checkForStoryPoint()
             }
           }>
             Turn In

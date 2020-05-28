@@ -31,7 +31,7 @@ function Main(props){
           ? styles.greyTab
           : styles.tab
         }
-        onClick = {() => setSelectedTab('research')}>Resources
+        onClick = {() => setSelectedTab('resources')}>Resources
       </button>
     )
   }

@@ -2,13 +2,15 @@ export const initialSetup= {
   resources: {
     bitsOfInfo: {
       visible: true,
-        currentCount: 0, 
-        title: "Bits Of Info:",
-        perSecond: 0
+      unlocked: true,
+      currentCount: 0, 
+      title: "Bits Of Info:",
+      perSecond: 0
     },
     money: {
       visible: true,
-      currentCount: 0,
+      unlocked: true,
+      currentCount: 5000,
       title: "Money: $",
       perSecond: 0
     },
@@ -24,10 +26,10 @@ export const initialSetup= {
       currentCount: 0,
       max: 100,
       currentEffeiency: 1,
-      cost: {
-        bitsOfInfo: 400,
-        energy: 100
-      }
+      unlockCost: {
+        money: 1000
+      },
+      perSecond: 0
     }
   },
   tabs: {

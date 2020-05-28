@@ -38,6 +38,10 @@ export const resources = (state={}, action) => {
       const toggleEnergyVisibleNewState = Object.assign({}, state)
       toggleEnergyVisibleNewState.energy.visible = true
       return toggleEnergyVisibleNewState
+    case "TOGGLE_ENERGY_UNLOCKED": 
+      const toggleEnergyUnlockedNewState = Object.assign({}, state)
+      toggleEnergyUnlockedNewState.energy.unlocked = true
+      return toggleEnergyUnlockedNewState
     default:
       return state
   }

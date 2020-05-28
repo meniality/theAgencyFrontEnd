@@ -4,7 +4,11 @@ import actions from '../../../../actions'
 import {FaRegMinusSquare, FaRegPlusSquare} from 'react-icons/fa'
 import { IconContext } from "react-icons";
 
-const {resourcesActions: {incrementBitsOfInfoAction, incrementAlgorithmsAction, decrementMoneyAction, increaseAlgorithmCostAction}} = actions
+const {resourcesActions: {
+  incrementBitsOfInfoAction, incrementAlgorithmsAction, 
+  decrementMoneyAction, increaseAlgorithmCostAction,
+  toggleEnergyVisibleAction
+}} = actions
 const {currentStoryPointsActions:{addNewStoryPointAction}}=actions
 const {tabsActions:{setFinanceTabTrueAction}} = actions
 const {actionsVisibilityActions:{setHireAHackerVisibleTrueAction, toggleSearchTheInternetMinimizedAction, toggleHireAHackerMinimizedAction}} = actions
@@ -45,6 +49,13 @@ function BitsOfInfoActionPage (props) {
   const checkForHireAHackerVisibility = () => {
     if (resources.money.currentCount >= 10 && actionsVisibility.resource.bitsOfInfo.hireAHacker.visible === false){
       props.setHireAHackerVisibleTrue()
+    }
+  }
+
+  const checkForEnergyVisibility = () => {
+    if (algorithms.currentCount >= 5 && resources.energy.visible === false){
+      props.toggleEnergyVisible()
+      checkForStoryPoint('getEnergy')
     }
   }
 
@@ -110,6 +121,7 @@ function BitsOfInfoActionPage (props) {
 
   useEffect(() => {
     checkForHireAHackerVisibility()
+    checkForEnergyVisibility()
   })
 
   return (
@@ -130,7 +142,8 @@ const mapDispatchToProps = (dispatch) => ({
   setFinanceTabTrue: () => dispatch(setFinanceTabTrueAction()),
   toggleSearchTheInternetMinimized: () => dispatch(toggleSearchTheInternetMinimizedAction()),
   setHireAHackerVisibleTrue: () => dispatch(setHireAHackerVisibleTrueAction()),
-  toggleHireAHackerMinimized: () => dispatch(toggleHireAHackerMinimizedAction())
+  toggleHireAHackerMinimized: () => dispatch(toggleHireAHackerMinimizedAction()),
+  toggleEnergyVisible: () => dispatch(toggleEnergyVisibleAction()),
 
 })
 
