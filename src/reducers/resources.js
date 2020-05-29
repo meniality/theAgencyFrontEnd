@@ -42,6 +42,13 @@ export const resources = (state={}, action) => {
       const toggleEnergyUnlockedNewState = Object.assign({}, state)
       toggleEnergyUnlockedNewState.energy.unlocked = true
       return toggleEnergyUnlockedNewState
+    case "INCREMENT_ENERGY":
+      if (state.energy.currentCount < state.energy.max){
+        const incrementEnergyNewState = Object.assign({}, state)
+        incrementEnergyNewState.energy.currentCount = 
+          incrementEnergyNewState.energy.currentCount + action.incrementValue
+        return incrementEnergyNewState
+      }
     default:
       return state
   }

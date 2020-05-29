@@ -10,7 +10,7 @@ export const initialSetup= {
     money: {
       visible: true,
       unlocked: true,
-      currentCount: 5000,
+      currentCount: 3000,
       title: "Money: $",
       perSecond: 0
     },
@@ -50,6 +50,12 @@ export const initialSetup= {
         },
         hireAHacker:{
           visible:false,
+          minimized: false
+        },
+      },
+      energy:{
+        generateEnergy:{
+          visible: true,
           minimized: false
         }
       }

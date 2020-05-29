@@ -2,11 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux'
 import actions from '../actions'
 
-const {resourcesActions: {
-  toggleEneregyUnlockedAction, decrementMoneyAction
-}} = actions
+const {resourcesActions: {toggleEneregyUnlockedAction, decrementMoneyAction}} = actions
+const {currentStoryPointsActions:{addNewStoryPointAction}}=actions
 
 function SingleResource (props) {
+
+  const {currentStoryPoints} = props
+
+  const checkForStoryPoint = (storyPoint) => {
+    if (!currentStoryPoints.includes(storyPoint))
+      props.addNewStoryPoint(storyPoint)
+  }
 
   const makeUnlockContainer = () => {
     return (
@@ -18,6 +24,7 @@ function SingleResource (props) {
               if(props.resources.money.currentCount >= props.resource.unlockCost.money){
                 props.toggleEneregyUnlocked()
                 props.decrementMoney(props.resource.unlockCost.money)
+                checkForStoryPoint('energyUnlocked')
               }
             }}
           >Purchase</button>
@@ -34,7 +41,10 @@ function SingleResource (props) {
       >
         <div style = {styles.div}> 
           <h3 style = {styles.title}>{props.resource.title}</h3>
-          <h3 style = {styles.number}>{Math.round(props.resource.currentCount)}</h3>
+          {props.resource.max
+            ? <h3 style = {styles.number}>{Math.round(props.resource.currentCount)}/{props.resource.max}</h3>
+            : <h3 style = {styles.number}>{Math.round(props.resource.currentCount)}</h3>
+          }
         </div>
         <p style={styles.perSecond}>+ {props.resource.perSecond} per second</p>
       </div>
@@ -43,12 +53,14 @@ function SingleResource (props) {
 }
 
 const mapStateToProps = (state) => ({
-  resources: state.resources
+  resources: state.resources,
+  currentStoryPoints: state.currentStoryPoints,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   toggleEneregyUnlocked: () => {dispatch(toggleEneregyUnlockedAction())},
-  decrementMoney: (decrementValue) => {dispatch(decrementMoneyAction(decrementValue))}
+  decrementMoney: (decrementValue) => {dispatch(decrementMoneyAction(decrementValue))},
+  addNewStoryPoint: (storyPoint) => {dispatch(addNewStoryPointAction(storyPoint))}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleResource)

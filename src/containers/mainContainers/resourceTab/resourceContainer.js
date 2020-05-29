@@ -24,8 +24,8 @@ function ResourceContainer(props) {
     if(resource.visible===true){
       return (
         <SingleResource
-          customClickEvent={clickEvent}
           resource={resource}
+          customClickEvent={clickEvent}
         />
       )
     }
