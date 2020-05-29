@@ -6,10 +6,25 @@ import Actions from '../../../../actions'
 
 const {actionsVisibilityActions:{toggleGenerateEnergyMinimizedAction}} = Actions
 const {resourcesActions:{incrementEnergyAction}} = Actions
+const {currentStoryPointsActions:{addNewStoryPointAction}} = Actions
+const {tabsActions:{setBlackMarketTabTrueAction}} = Actions
 
 function EnergyActionPage(props){
 
-  const {actionsVisibility} = props
+  const {actionsVisibility, currentStoryPoints, resources, tabs} = props
+
+  const checkForStoryPoint = (storyPoint) => {
+    if (!currentStoryPoints.includes(storyPoint)){
+      props.addNewStoryPoint(storyPoint)
+    }
+  }
+
+  const checkForBlackMarketTabVisible = () => {
+    if (resources.energy.currentCount >= 20 && tabs.blackMarket === false){
+      props.setBlackMarketTabTrue()
+      checkForStoryPoint('openBlackMarket')
+    }
+  }
 
   const createMinusButton = (minimizeAction) => {
     return (
@@ -45,7 +60,7 @@ function EnergyActionPage(props){
           <button className = {'button'}style = {styles.actionButton} 
             onClick ={()=>{
               props.incrementEnergy(1)
-              // checkForStoryPoint('firstBit')
+              checkForBlackMarketTabVisible()
             }
           }
           >
@@ -69,12 +84,16 @@ function EnergyActionPage(props){
 
 const mapStateToProps = (state) => ({
   resources: state.resources,
-  actionsVisibility: state.actionsVisibility
+  actionsVisibility: state.actionsVisibility,
+  currentStoryPoints: state.currentStoryPoints,
+  tabs: state.tabs
   
 })
 const mapDispatchToProps = (dispatch) => ({
   toggleGenerateEnergyMinimized: () => dispatch(toggleGenerateEnergyMinimizedAction()),
-  incrementEnergy: (incrementValue) => dispatch(incrementEnergyAction(incrementValue))
+  incrementEnergy: (incrementValue) => dispatch(incrementEnergyAction(incrementValue)),
+  addNewStoryPoint: (storyPoint) => {dispatch(addNewStoryPointAction(storyPoint))},
+  setBlackMarketTabTrue: () => {dispatch(setBlackMarketTabTrueAction())},
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EnergyActionPage)

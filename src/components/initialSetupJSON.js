@@ -34,6 +34,7 @@ export const initialSetup= {
   },
   tabs: {
     resources: true,
+    blackMarket: true
   },
   actionVisibility:{
     resource: {
