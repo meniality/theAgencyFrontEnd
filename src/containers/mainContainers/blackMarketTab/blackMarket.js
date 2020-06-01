@@ -1,4 +1,5 @@
 import React from 'react'
+import images from '../../../images'
 
 function BlackMarketContainer() {
   return (
@@ -9,6 +10,17 @@ function BlackMarketContainer() {
             <p style= {styles.address}>http://blackMarketEbay.gov/secure/secret/dontTellAnyone</p>
           </div>
         </div>
+        <div style={styles.welcomeMessageContainer}>
+          <p style={styles.welcomeMessage}>Welcome to Black Market Ebay where you will find everything your heart desires. Please search to your hearts content and be assured all transactions are completely anonymous and impossible to trace. </p>
+        </div>
+        <button style={styles.button} className={'button'}>
+          Search the black market <br/>
+          cost: 1212 bits of info
+        </button>
+        <img
+          src={images.slotMachine}
+          alt= 'slot machine'
+        />
       </div>
     </div>
   )
@@ -33,7 +45,10 @@ const styles = {
     height: '97%',
     borderStyle: 'solid',
     borderColor: 'rgb(86, 85, 85)',
-    borderWidth: 2
+    borderWidth: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   addressBarContainer:{
     display: 'flex',
@@ -43,6 +58,7 @@ const styles = {
     borderColor: 'rgb(86, 85, 85)',
     borderWidth: 2,
     height: 30,
+    width: '100%'
   },
   addressBar:{
     width: '98%',
@@ -54,5 +70,18 @@ const styles = {
   },
   address:{
     marginLeft: 12
+  },
+  welcomeMessageContainer:{
+    display: 'flex',
+    justifyContent:'center',
+    width: '100%'
+  },
+  welcomeMessage:{
+    width: '97%'
+  },
+  button: {
+    height: 35,
+    borderRadius: 3,
+    backgroundColor: 'rgba(128, 128, 128, 0.51)'
   }
 }

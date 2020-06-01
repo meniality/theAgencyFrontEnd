@@ -98,7 +98,7 @@ function BitsOfInfoActionPage (props) {
       return (
         <div style={styles.actionContainer}>
           <div style={styles.topDescriptionDiv}>
-            <p style={styles.description}>Hire a hacker to write an algorithm to search the internet</p>
+            <p style={styles.description}>Hire hackerX to write an algorithm to search the internet</p>
             {createMinusButton(props.toggleHireAHackerMinimized)}
           </div>
           <p style={styles.description}>Cost: ${Math.round(algorithms.cost)} for +1 bit of info per second</p>
@@ -114,7 +114,7 @@ function BitsOfInfoActionPage (props) {
       )
     }
     else if (actionsVisibility.resource.bitsOfInfo.hireAHacker.visible === true && actionsVisibility.resource.bitsOfInfo.hireAHacker.minimized === true) {
-      const text = "Hire a Hacker"
+      const text = "Hire HackerX to write an algorithm"
       return minimizedActionDiv(text, props.toggleHireAHackerMinimized)
     }
   }
