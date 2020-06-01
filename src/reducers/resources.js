@@ -34,6 +34,21 @@ export const resources = (state={}, action) => {
       increaseAlogrithmCostNewState.algorithms.cost = 
         increaseAlogrithmCostNewState.algorithms.cost * 1.05
     return increaseAlogrithmCostNewState
+    case "TOGGLE_ENERGY_VISIBLE":
+      const toggleEnergyVisibleNewState = Object.assign({}, state)
+      toggleEnergyVisibleNewState.energy.visible = true
+      return toggleEnergyVisibleNewState
+    case "TOGGLE_ENERGY_UNLOCKED": 
+      const toggleEnergyUnlockedNewState = Object.assign({}, state)
+      toggleEnergyUnlockedNewState.energy.unlocked = true
+      return toggleEnergyUnlockedNewState
+    case "INCREMENT_ENERGY":
+      if (state.energy.currentCount < state.energy.max){
+        const incrementEnergyNewState = Object.assign({}, state)
+        incrementEnergyNewState.energy.currentCount = 
+          incrementEnergyNewState.energy.currentCount + action.incrementValue
+        return incrementEnergyNewState
+      }
     default:
       return state
   }

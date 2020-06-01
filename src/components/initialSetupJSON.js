@@ -1,29 +1,40 @@
 export const initialSetup= {
   resources: {
     bitsOfInfo: {
-        currentCount: 0, 
-        title: "Bits Of Info:",
-        perSecond: 0
+      visible: true,
+      unlocked: true,
+      currentCount: 0, 
+      title: "Bits Of Info:",
+      perSecond: 0
     },
     money: {
-      currentCount: 0,
-      title: "Bank Account: $",
+      visible: true,
+      unlocked: true,
+      currentCount: 3000,
+      title: "Money: $",
       perSecond: 0
     },
     algorithms: {
       currentCount: 0,
       currentEffeiency: 1,
       cost: 40
-    }
-  },
-  locations: {
-    newsOutlets: {
-      title: "News Outlets"
+    },
+    energy: {
+      title: 'Energy:',
+      visible: false,
+      unlocked: false,
+      currentCount: 0,
+      max: 100,
+      currentEffeiency: 1,
+      unlockCost: {
+        money: 1000
+      },
+      perSecond: 0
     }
   },
   tabs: {
-    research: true,
-    finance: false,
+    resources: true,
+    blackMarket: true
   },
   actionVisibility:{
     resource: {
@@ -41,17 +52,15 @@ export const initialSetup= {
         hireAHacker:{
           visible:false,
           minimized: false
-        }
-      }
-    },
-    finance: {
-      newsOutlets:{
-        turnIn40Bits:{
+        },
+      },
+      energy:{
+        generateEnergy:{
           visible: true,
           minimized: false
         }
       }
-    }
+    },
   }
 }
 

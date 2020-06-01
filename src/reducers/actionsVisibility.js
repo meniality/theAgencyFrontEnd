@@ -21,6 +21,11 @@ export const actionsVisibility = (state={}, action) => {
       toggleTurnIn40BitsMinimizedNewState.resource.money.turnIn40Bits.minimized = 
         !toggleTurnIn40BitsMinimizedNewState.resource.money.turnIn40Bits.minimized
       return toggleTurnIn40BitsMinimizedNewState
+    case "TOGGLE_GENERATE_ENERGY_MINIMIZED":
+      const toggleGenerateEnergyMinimized = Object.assign({}, state)
+      toggleGenerateEnergyMinimized.resource.energy.generateEnergy.minimized = 
+        !toggleGenerateEnergyMinimized.resource.energy.generateEnergy.minimized
+      return toggleGenerateEnergyMinimized
     default:
       return state
   }

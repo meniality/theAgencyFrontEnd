@@ -5,7 +5,9 @@ const incrementMoneyAction = (incrementValue) => ({type: "INCREMENT_MONEY", incr
 const decrementMoneyAction = (decrementValue) => ({type: "DECREMENT_MONEY", decrementValue})
 const incrementAlgorithmsAction = () => ({type: "INCREMENT_ALGORITHMS"})
 const increaseAlgorithmCostAction = () => ({type: "INCREASE_ALOGRITHM_COST"})
-
+const toggleEnergyVisibleAction = () => ({type: "TOGGLE_ENERGY_VISIBLE"})
+const toggleEneregyUnlockedAction = () => ({type : "TOGGLE_ENERGY_UNLOCKED"})
+const incrementEnergyAction = (incrementValue) => ({type: "INCREMENT_ENERGY", incrementValue})
 
 export const resourcesActions = {
   setInitialResourcesAction,
@@ -14,5 +16,8 @@ export const resourcesActions = {
   incrementMoneyAction,
   decrementMoneyAction,
   incrementAlgorithmsAction,
-  increaseAlgorithmCostAction
+  increaseAlgorithmCostAction,
+  toggleEnergyVisibleAction,
+  toggleEneregyUnlockedAction,
+  incrementEnergyAction
 }

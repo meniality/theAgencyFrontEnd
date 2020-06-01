@@ -1,29 +1,29 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import actions from '../../../../actions'
 import {FaRegMinusSquare, FaRegPlusSquare} from 'react-icons/fa'
 import { IconContext } from "react-icons";
+import Actions from '../../../../actions'
 
-const {resourcesActions:{decrementBitsOfInfoAction,incrementMoneyAction}}=actions
-const {currentStoryPointsActions:{addNewStoryPointAction}}=actions
-const {actionsVisibilityActions:{toggleTurnIn40BitsMinimizedAction}} = actions
+const {actionsVisibilityActions:{toggleGenerateEnergyMinimizedAction}} = Actions
+const {resourcesActions:{incrementEnergyAction}} = Actions
+const {currentStoryPointsActions:{addNewStoryPointAction}} = Actions
+const {tabsActions:{setBlackMarketTabTrueAction}} = Actions
 
-function Money(props) {
+function EnergyActionPage(props){
 
-  const {currentStoryPoints, actionsVisibility, money} = props
-  const {resources:{bitsOfInfo}} = props
+  const {actionsVisibility, currentStoryPoints, resources, tabs} = props
 
-  const checkForStoryPoint = () => {
-    if (!currentStoryPoints.includes('newsOutlets'))
-      props.addNewStoryPoint('newsOutlets')
+  const checkForStoryPoint = (storyPoint) => {
+    if (!currentStoryPoints.includes(storyPoint)){
+      props.addNewStoryPoint(storyPoint)
+    }
   }
-  
-  const sellInfoForMoney = () => {
-   if (bitsOfInfo.currentCount >= 40){
-    checkForStoryPoint()
-    props.decrementBitsOfInfo(40)
-    props.incrementMoney(10)
-   }
+
+  const checkForBlackMarketTabVisible = () => {
+    if (resources.energy.currentCount >= 20 && tabs.blackMarket === false){
+      props.setBlackMarketTabTrue()
+      checkForStoryPoint('openBlackMarket')
+    }
   }
 
   const createMinusButton = (minimizeAction) => {
@@ -36,68 +36,67 @@ function Money(props) {
     )
   }
 
-  const minimizedActionDiv = (text, maximizeAction) => {
+  const minimizedActionDiv = (text, maximizeFunction) => {
     return (
       <div style={styles.minimizedDiv}>
         <p style = {styles.description}>{text}</p>
         <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "button" }}>
           <div style={styles.minusButton}>
-            <FaRegPlusSquare onClick= {()=>{maximizeAction()}}/>
+            <FaRegPlusSquare onClick= {()=>{maximizeFunction()}}/>
           </div>
         </IconContext.Provider>
       </div>
     )
   }
 
-  const createTurnInBitsOfInfoToTabloids = () => {
-    if(actionsVisibility.resource.money.turnIn40Bits.minimized === false){
-      return (
-        <div style ={styles.actionContainer}>
+  const createGenerateEnergyActionTab = () => {
+    if(actionsVisibility.resource.energy.generateEnergy.minimized === false){
+      return(
+        <div style={styles.actionContainer}>
           <div style={styles.topDescriptionDiv}>
-            <p style= {styles.description}>
-              Turn in 40 bits of information to the tabloids for $10
-            </p>
-            {createMinusButton(props.toggleTurnIn40BitsMinimized)}
+            <p style={styles.description}>Crank the battery handle to generate energy</p>
+              {createMinusButton(props.toggleGenerateEnergyMinimized)}
           </div>
-          <p>Current Bits of information:{props.bitsOfInfo} Current Money:${Math.round(money.currentCount)}</p>
           <button className = {'button'}style = {styles.actionButton} 
-            onClick = {() => {
-              sellInfoForMoney()
+            onClick ={()=>{
+              props.incrementEnergy(1)
+              checkForBlackMarketTabVisible()
             }
-          }>
-            Turn In
+          }
+          >
+            +1 energy
           </button>
         </div>
       )
     }
     else{
-      const text = "Turn in 40 bits for $10"
-      return minimizedActionDiv(text, props.toggleTurnIn40BitsMinimized)
+      const text = "Crank the handle to generate energy"
+      return minimizedActionDiv(text, props.toggleGenerateEnergyMinimized)
     }
   }
-  return(
-    <div style = {styles.div}>
-      <p style={styles.title}>Money</p>
-      {createTurnInBitsOfInfoToTabloids()}
-    </div>
-  )}
 
+  return (
+    <div>
+      {createGenerateEnergyActionTab()}
+    </div>
+  )
+}
 
 const mapStateToProps = (state) => ({
-  currentStoryPoints: state.currentStoryPoints,
+  resources: state.resources,
   actionsVisibility: state.actionsVisibility,
-  money: state.resources.money,
-  resources: state.resources
+  currentStoryPoints: state.currentStoryPoints,
+  tabs: state.tabs
+  
 })
-
 const mapDispatchToProps = (dispatch) => ({
-  decrementBitsOfInfo: (decrementValue) => dispatch(decrementBitsOfInfoAction(decrementValue)),
-  incrementMoney: (incrementValue) => dispatch(incrementMoneyAction(incrementValue)),
-  addNewStoryPoint: (storyPoint) => dispatch(addNewStoryPointAction(storyPoint)),
-  toggleTurnIn40BitsMinimized: () => dispatch(toggleTurnIn40BitsMinimizedAction()),
+  toggleGenerateEnergyMinimized: () => dispatch(toggleGenerateEnergyMinimizedAction()),
+  incrementEnergy: (incrementValue) => dispatch(incrementEnergyAction(incrementValue)),
+  addNewStoryPoint: (storyPoint) => {dispatch(addNewStoryPointAction(storyPoint))},
+  setBlackMarketTabTrue: () => {dispatch(setBlackMarketTabTrueAction())},
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Money)
+export default connect(mapStateToProps, mapDispatchToProps)(EnergyActionPage)
 
 const styles = {
   div: {
@@ -133,10 +132,10 @@ const styles = {
     borderColor: 'rgba(105, 105, 105, 0.68)',
     padding: '5px 0px 5px 0px',
     borderRadius: 3,
-    margin: 5,
-    fontFamily: 'DM Mono',
+    margin: 5
   },
   description: {
+    fontFamily: 'DM Mono',
     margin: 0,
     paddingBottom: 5,
     display: 'inline',

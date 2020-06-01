@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import BitsOfInfoActionPage from './actionPages/bitsOfInfoActionPage'
 import MoneyActionPage from './actionPages/moneyActionPage'
+import EnergyActionPage from './actionPages/energyActionPage'
 
 function actionsContainer (props) {
 
@@ -13,6 +14,8 @@ function actionsContainer (props) {
         return <BitsOfInfoActionPage />
       case 'money':
         return <MoneyActionPage />
+      case 'energy':
+        return <EnergyActionPage />
       default:
         return null
     }
