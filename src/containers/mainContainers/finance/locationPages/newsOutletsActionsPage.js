@@ -79,23 +79,23 @@ function NewsOutletsActionPage (props) {
     <div style = {styles.div}>
       <p style={styles.title}>News Outlets</p>
       {createTurnInBitsOfInfoToTabloids()}
-      <div style ={styles.actionContainer}>
-          <div style={styles.topDescriptionDiv}>
-            <p style= {styles.description}>
-              Turn in 40 bits of information to the tabloids for $10
-            </p>
-            {createMinusButton(props.toggleTurnIn40BitsMinimized)}
-          </div>
-          <p>Current Bits of information:{props.bitsOfInfo} Current Money:${Math.round(props.money)}</p>
-          <button className = {'button'}style = {styles.actionButton} 
-            onClick = {() => {
-              sellInfoForMoney()
-              checkForStoryPoint()
-            }
-          }>
-            Turn In
-          </button>
+      {/* <div style ={styles.actionContainer}>
+        <div style={styles.topDescriptionDiv}>
+          <p style= {styles.description}>
+            Turn in 40 bits of information to the tabloids for $10
+          </p>
+          {createMinusButton(props.toggleTurnIn40BitsMinimized)}
         </div>
+        <p>Current Bits of information:{props.bitsOfInfo} Current Money:${Math.round(props.money)}</p>
+        <button className = {'button'}style = {styles.actionButton} 
+          onClick = {() => {
+            sellInfoForMoney()
+            checkForStoryPoint()
+          }
+        }>
+          Turn In
+        </button>
+      </div> */}
     </div>
   )
 }
