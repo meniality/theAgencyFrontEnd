@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import ResourceContainer from './mainContainers/resourceTab/resourceContainer'
 import StoryContainer from './mainContainers/storyContainer'
 import ActionsContainer from './mainContainers/resourceTab/actionsContainer'
-import BlackMarketContainer from './blackMarketTab/blackMarket'
+import BlackMarketContainer from './mainContainers/blackMarketTab/blackMarket'
 
 function Main(props){
 
@@ -17,14 +17,12 @@ function Main(props){
           <>
             <ResourceContainer />
             <ActionsContainer />
-            {/* <StoryContainer /> */}
           </>
         )
       case 'blackMarket':
         return (
           <>
             <BlackMarketContainer />
-            {/* <StoryContainer /> */}
           </>
         )
       default :
