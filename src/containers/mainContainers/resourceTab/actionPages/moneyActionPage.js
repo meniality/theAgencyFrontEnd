@@ -8,9 +8,10 @@ const {resourcesActions:{decrementBitsOfInfoAction,incrementMoneyAction}}=action
 const {currentStoryPointsActions:{addNewStoryPointAction}}=actions
 const {actionsVisibilityActions:{toggleTurnIn40BitsMinimizedAction}} = actions
 
-function NewsOutletsActionPage (props) {
+function Money(props) {
 
-  const {currentStoryPoints, actionsVisibility} = props
+  const {currentStoryPoints, actionsVisibility, money} = props
+  const {resources:{bitsOfInfo}} = props
 
   const checkForStoryPoint = () => {
     if (!currentStoryPoints.includes('newsOutlets'))
@@ -18,7 +19,7 @@ function NewsOutletsActionPage (props) {
   }
   
   const sellInfoForMoney = () => {
-   if (props.bitsOfInfo >= 40){
+   if (bitsOfInfo.currentCount >= 40){
     props.decrementBitsOfInfo(40)
     props.incrementMoney(10)
    }
@@ -34,13 +35,13 @@ function NewsOutletsActionPage (props) {
     )
   }
 
-  const minimizedActionDiv = (text, maximizeFunction) => {
+  const minimizedActionDiv = (text, maximizeAction) => {
     return (
       <div style={styles.minimizedDiv}>
         <p style = {styles.description}>{text}</p>
         <IconContext.Provider value={{ color: "rgb(90, 90, 90)", className: "button" }}>
           <div style={styles.minusButton}>
-            <FaRegPlusSquare onClick= {()=>{maximizeFunction()}}/>
+            <FaRegPlusSquare onClick= {()=>{maximizeAction()}}/>
           </div>
         </IconContext.Provider>
       </div>
@@ -48,7 +49,7 @@ function NewsOutletsActionPage (props) {
   }
 
   const createTurnInBitsOfInfoToTabloids = () => {
-    if(actionsVisibility.finance.newsOutlets.turnIn40Bits.minimized === false){
+    if(actionsVisibility.resource.money.turnIn40Bits.minimized === false){
       return (
         <div style ={styles.actionContainer}>
           <div style={styles.topDescriptionDiv}>
@@ -57,7 +58,7 @@ function NewsOutletsActionPage (props) {
             </p>
             {createMinusButton(props.toggleTurnIn40BitsMinimized)}
           </div>
-          <p>Current Bits of information:{props.bitsOfInfo} Current Money:${Math.round(props.money)}</p>
+          <p>Current Bits of information:{props.bitsOfInfo} Current Money:${Math.round(money.currentCount)}</p>
           <button className = {'button'}style = {styles.actionButton} 
             onClick = {() => {
               sellInfoForMoney()
@@ -74,35 +75,19 @@ function NewsOutletsActionPage (props) {
       return minimizedActionDiv(text, props.toggleTurnIn40BitsMinimized)
     }
   }
-
   return(
     <div style = {styles.div}>
-      <p style={styles.title}>News Outlets</p>
+      <p style={styles.title}>Money</p>
       {createTurnInBitsOfInfoToTabloids()}
-      {/* <div style ={styles.actionContainer}>
-        <div style={styles.topDescriptionDiv}>
-          <p style= {styles.description}>
-            Turn in 40 bits of information to the tabloids for $10
-          </p>
-          {createMinusButton(props.toggleTurnIn40BitsMinimized)}
-        </div>
-        <p>Current Bits of information:{props.bitsOfInfo} Current Money:${Math.round(props.money)}</p>
-        <button className = {'button'}style = {styles.actionButton} 
-          onClick = {() => {
-            sellInfoForMoney()
-            checkForStoryPoint()
-          }
-        }>
-          Turn In
-        </button>
-      </div> */}
     </div>
-  )
-}
+  )}
+
 
 const mapStateToProps = (state) => ({
   currentStoryPoints: state.currentStoryPoints,
-  actionsVisibility: state.actionsVisibility
+  actionsVisibility: state.actionsVisibility,
+  money: state.resources.money,
+  resources: state.resources
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -112,7 +97,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleTurnIn40BitsMinimized: () => dispatch(toggleTurnIn40BitsMinimizedAction()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsOutletsActionPage)
+export default connect(mapStateToProps, mapDispatchToProps)(Money)
 
 const styles = {
   div: {
