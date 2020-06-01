@@ -17,14 +17,14 @@ function Main(props){
           <>
             <ResourceContainer />
             <ActionsContainer />
-            <StoryContainer />
+            {/* <StoryContainer /> */}
           </>
         )
       case 'blackMarket':
         return (
           <>
             <BlackMarketContainer />
-            <StoryContainer />
+            {/* <StoryContainer /> */}
           </>
         )
       default :
@@ -70,6 +70,7 @@ function Main(props){
       </div>
       <div style= {styles.div}>
         {selectTab()}
+        <StoryContainer />
       </div>
     </div>
   )
