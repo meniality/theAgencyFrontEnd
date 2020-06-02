@@ -8,10 +8,10 @@ import initialSetup from './components/initialSetupJSON'
 import {story} from './components/story'
 
 const {resourcesActions: {setInitialResourcesAction}} = actions
-const {locationsActions:{setInitialLocationsActions}} = actions
 const {currentStoryPointsActions:{setDefaultCurrentStoryPointsAction}} = actions
 const {tabsActions:{setTabsAction}} = actions
 const {actionsVisibilityActions:{setInitialActionsVisibilityAction}} = actions
+const {artifactsActions:{setCurrenntArtifactsAction}} = actions
 
 function App(props) {
 
@@ -27,6 +27,7 @@ function App(props) {
     props.setDefaultCurrentStoryPoint([Object.keys(story)[0]])
     props.setTabs(initialSetup.tabs)
     props.setInitialActionsVisibility(initialSetup.actionVisibility)
+    props.setCurrenntArtifacts(initialSetup.artifacts)
   }
 
   window.localStorage.getItem('resources')
@@ -46,7 +47,8 @@ const mapDispatchToProps = (dispatch) => ({
   setInitialResources: (resources) => dispatch(setInitialResourcesAction(resources)),
   setDefaultCurrentStoryPoint: (storyPoints) => dispatch(setDefaultCurrentStoryPointsAction(storyPoints)),
   setTabs: (tabs) => dispatch(setTabsAction(tabs)),
-  setInitialActionsVisibility: (actionsVisibility) => dispatch(setInitialActionsVisibilityAction(actionsVisibility))
+  setInitialActionsVisibility: (actionsVisibility) => dispatch(setInitialActionsVisibilityAction(actionsVisibility)),
+  setCurrenntArtifacts: (artifacts) => dispatch(setCurrenntArtifactsAction(artifacts))
 })
 
 export default connect(null, mapDispatchToProps)(App)

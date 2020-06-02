@@ -6,6 +6,7 @@ import {currentStoryPointsActions} from './currentStoryPoints'
 import {tabsActions} from './tabs'
 import {incrementStartedActions} from './incrementStarted'
 import {actionsVisibilityActions} from './actionsVisiblity'
+import {artifactsActions} from './artifacts'
 
 export default {
   resourcesActions,
@@ -15,5 +16,6 @@ export default {
   currentStoryPointsActions,
   tabsActions,
   incrementStartedActions,
-  actionsVisibilityActions
+  actionsVisibilityActions,
+  artifactsActions
 }

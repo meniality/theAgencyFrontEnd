@@ -1,7 +1,26 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
+import {connect} from 'react-redux'
 import images from '../../../images'
 
-function BlackMarketContainer() {
+function BlackMarketContainer(props) {
+
+  const {artifacts} = props
+  const [searchCost, setSearchCost] = useState(0)
+
+  console.log(artifacts)
+
+  const checkForCostOfSearch = () => {
+    artifacts.map(artifact => {
+      if (artifact.purchased === false){
+        setSearchCost(artifact.searchCost)
+      }
+    })
+  }
+
+  useEffect(() => {
+    checkForCostOfSearch()
+  })
+
   return (
     <div style={styles.div}>
       <div style={styles.outerContainer}>
@@ -13,9 +32,12 @@ function BlackMarketContainer() {
         <div style={styles.welcomeMessageContainer}>
           <p style={styles.welcomeMessage}>Welcome to Black Market Ebay where you will find everything your heart desires. Please search to your hearts content and be assured all transactions are completely anonymous and impossible to trace. </p>
         </div>
-        <button style={styles.button} className={'button'}>
+        <button 
+          style={styles.button} 
+          className={'button'}
+        >
           Search the black market <br/>
-          cost: 1212 bits of info
+          cost: {searchCost} bits of info
         </button>
         <img
           src={images.slotMachine}
@@ -26,7 +48,14 @@ function BlackMarketContainer() {
   )
 }
 
-export default BlackMarketContainer
+const mapStateToProps = (state) => ({
+  artifacts: state.artifacts
+})
+const mapDispatchToProps = (dispatch) => ({
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlackMarketContainer)
+
 
 const styles = {
   div: {
@@ -34,6 +63,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     width: '70vw',
+    height:500,
     marginLeft: 5,
     borderBottomStyle: 'solid',
     borderLeftStyle: 'solid',
@@ -48,7 +78,8 @@ const styles = {
     borderWidth: 2,
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    overflow: 'scroll'
   },
   addressBarContainer:{
     display: 'flex',

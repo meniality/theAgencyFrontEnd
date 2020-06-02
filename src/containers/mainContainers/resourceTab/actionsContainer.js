@@ -28,6 +28,13 @@ function actionsContainer (props) {
   )
 }
 
+const mapStateToProps = (state) => ({
+  currentActionPage: state.currentActionPage,
+  resources: state.resources
+})
+
+export default connect(mapStateToProps, null)(actionsContainer)
+
 const styles = {
   div: {
     width: '45vw',
@@ -36,10 +43,3 @@ const styles = {
     borderColor: 'rgb(86, 85, 85)',
   }
 }
-
-const mapStateToProps = (state) => ({
-  currentActionPage: state.currentActionPage,
-  resources: state.resources
-})
-
-export default connect(mapStateToProps, null)(actionsContainer)

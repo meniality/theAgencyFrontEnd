@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-function ItemCard(){
+function ItemCard(props){
   return(
     <div>
-      card
+      <p></p>
     </div>
   )
 }

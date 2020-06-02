@@ -10,7 +10,7 @@ export const initialSetup= {
     money: {
       visible: true,
       unlocked: true,
-      currentCount: 3000,
+      currentCount:0,
       title: "Money: $",
       perSecond: 0
     },
@@ -61,7 +61,18 @@ export const initialSetup= {
         }
       }
     },
-  }
+  },
+  artifacts:[
+    {name: 'Slot Machine',
+      visible: false,
+      purchased: false,
+      searchCost: 1000,
+      purchaseCost: 400,
+      image: 'slotMachine',
+      blurb: 'I came into possesion of this item many years ago and it has never worked as the seller described. Selling to just get it out of my hair.',
+      insideKnowledge: "Through your research you've traced this item back to the 1950's. It seems back then it would slowly spit out quarters even though the machine was empty and unplugged. After it stopped working it dissapeard from records. Until now. You should buy it to just to take a look."
+    },
+  ]
 }
 
 export default initialSetup

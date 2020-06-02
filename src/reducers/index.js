@@ -7,6 +7,7 @@ import {currentStoryPoints} from './currentStoryPoints'
 import {tabs} from './tabs'
 import {incrementStarted} from './incrementStarted'
 import {actionsVisibility} from './actionsVisibility'
+import {artifacts} from './artifacts'
 
 
 export default combineReducers({
@@ -17,5 +18,6 @@ export default combineReducers({
   currentStoryPoints,
   tabs,
   incrementStarted,
-  actionsVisibility
+  actionsVisibility,
+  artifacts
 })
