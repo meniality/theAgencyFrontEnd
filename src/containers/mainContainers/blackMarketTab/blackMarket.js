@@ -1,24 +1,50 @@
 import React,{useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import images from '../../../images'
+import actions from '../../../actions'
+import ArtifactCard from './artifactCard.js'
+
+const {artifactsActions:{setPurchasedTrueAction}} = actions
 
 function BlackMarketContainer(props) {
 
   const {artifacts} = props
   const [searchCost, setSearchCost] = useState(0)
-
-  console.log(artifacts)
+  const [artifactToPurchase, setArtifactToPurchase] = useState(0)
+  const [buttonPhrase, setButtonPhrase] = useState('')
 
   const checkForCostOfSearch = () => {
-    artifacts.map(artifact => {
-      if (artifact.purchased === false){
-        setSearchCost(artifact.searchCost)
+    for (var i = 0; i < artifacts.length; i++){
+      if (artifacts[i].purchased === false){
+        setSearchCost(artifacts[i].searchCost)
+        setArtifactToPurchase(i)
+        break
+      }
+      else{
+        setSearchCost(0)
+      }
+    }
+  }
+  
+  const createArtifactCards = () => {
+    return artifacts.map((artifact, index) => {
+      if (artifact.purchased === true){
+        return <ArtifactCard artifact={artifact} index={index}/>
       }
     })
   }
 
+  const pickButtonPhrase = () => {
+    if (searchCost === 0){
+       setButtonPhrase("You have no leads right now.")
+    }
+    else {
+      setButtonPhrase(`cost: ${searchCost} bits of info`)
+    }
+  }
+
   useEffect(() => {
     checkForCostOfSearch()
+    pickButtonPhrase()
   })
 
   return (
@@ -35,14 +61,16 @@ function BlackMarketContainer(props) {
         <button 
           style={styles.button} 
           className={'button'}
+          onClick = {()=>{
+            props.setPurchasedTrue(artifactToPurchase)
+          }}
         >
-          Search the black market <br/>
-          cost: {searchCost} bits of info
+          Search the black market<br/>
+          {buttonPhrase}
         </button>
-        <img
-          src={images.slotMachine}
-          alt= 'slot machine'
-        />
+        <div style={styles.artifactContainer}>
+          {createArtifactCards()}
+        </div>
       </div>
     </div>
   )
@@ -52,6 +80,7 @@ const mapStateToProps = (state) => ({
   artifacts: state.artifacts
 })
 const mapDispatchToProps = (dispatch) => ({
+  setPurchasedTrue: (index) => dispatch(setPurchasedTrueAction(index)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlackMarketContainer)
@@ -113,6 +142,10 @@ const styles = {
   button: {
     height: 35,
     borderRadius: 3,
-    backgroundColor: 'rgba(128, 128, 128, 0.51)'
+    backgroundColor: 'rgba(128, 128, 128, 0.51)',
+    fontFamily: 'DM Mono',
+  },
+  artifactContainer:{
+    display: 'flex',
   }
 }

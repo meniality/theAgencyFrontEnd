@@ -64,6 +64,7 @@ export const initialSetup= {
   },
   artifacts:[
     {name: 'Slot Machine',
+      found: true,
       visible: false,
       purchased: false,
       searchCost: 1000,
@@ -72,6 +73,9 @@ export const initialSetup= {
       blurb: 'I came into possesion of this item many years ago and it has never worked as the seller described. Selling to just get it out of my hair.',
       insideKnowledge: "Through your research you've traced this item back to the 1950's. It seems back then it would slowly spit out quarters even though the machine was empty and unplugged. After it stopped working it dissapeard from records. Until now. You should buy it to just to take a look."
     },
+    {name: 'test',
+      purchased: false,
+      searchCost: 2000}
   ]
 }
 
