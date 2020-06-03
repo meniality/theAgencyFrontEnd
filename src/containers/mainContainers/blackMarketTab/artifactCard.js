@@ -17,7 +17,8 @@ function ArtifactCard(props){
       </button>
       <div style={styles.toolTipDiv}>
         <ToolTip>
-          <p> test </p>
+          <p style= {styles.infoText}>Seller Info: <br/> {props.artifact.sellerInfo} </p>
+          <p style= {styles.infoText}>Your Info: <br/> {props.artifact.insideInfo}</p>
         </ToolTip>
       </div>
     </OuterDiv>
@@ -35,15 +36,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(ArtifactCard)
 
 const ToolTip=styled.div`
   display: none;
+  flex-direction: column;
+  align-items: center;
   width: 300px;
   height: 200px;
-  background-color: grey;
+  background-color: rgb(222, 222, 222);
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
   position: fixed;
   z-index: 100;
- 
+  overFlow: scroll;
+  box-shadow: 0 0 2px 2px rgb(222, 222, 222);
 `
 
 const OuterDiv=styled.div`
@@ -58,7 +62,8 @@ const OuterDiv=styled.div`
   font-family: DM Mono;
   margin: 20px;
   &:hover ${ToolTip}{
-    display: block;
+    display: flex;
+    overFlow: scroll;
   }
 `
 
@@ -75,7 +80,10 @@ const styles = {
   toolTipDiv:{
     height: 0,
     position: 'relative',
-    left: '67px',
+    left: '63px',
     bottom: '183px',
   },
+  infoText:{
+    width: '96%'
+  }
 }
